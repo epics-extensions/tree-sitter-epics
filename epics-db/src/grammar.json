@@ -38,6 +38,10 @@
         }
       ]
     },
+    "_type": {
+      "type": "PATTERN",
+      "value": "\\w+"
+    },
     "_record_parameters": {
       "type": "SEQ",
       "members": [
@@ -49,8 +53,22 @@
           "type": "FIELD",
           "name": "type",
           "content": {
-            "type": "SYMBOL",
-            "name": "record_type"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "builtin_record_type"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_type"
+                },
+                "named": true,
+                "value": "record_type"
+              }
+            ]
           }
         },
         {
@@ -71,9 +89,146 @@
         }
       ]
     },
-    "record_type": {
-      "type": "PATTERN",
-      "value": "\\w+"
+    "builtin_record_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "aai"
+        },
+        {
+          "type": "STRING",
+          "value": "aao"
+        },
+        {
+          "type": "STRING",
+          "value": "ai"
+        },
+        {
+          "type": "STRING",
+          "value": "ao"
+        },
+        {
+          "type": "STRING",
+          "value": "aSub"
+        },
+        {
+          "type": "STRING",
+          "value": "bi"
+        },
+        {
+          "type": "STRING",
+          "value": "bo"
+        },
+        {
+          "type": "STRING",
+          "value": "calc"
+        },
+        {
+          "type": "STRING",
+          "value": "calcout"
+        },
+        {
+          "type": "STRING",
+          "value": "compress"
+        },
+        {
+          "type": "STRING",
+          "value": "dfanout"
+        },
+        {
+          "type": "STRING",
+          "value": "event"
+        },
+        {
+          "type": "STRING",
+          "value": "fanout"
+        },
+        {
+          "type": "STRING",
+          "value": "histogram"
+        },
+        {
+          "type": "STRING",
+          "value": "longin"
+        },
+        {
+          "type": "STRING",
+          "value": "longout"
+        },
+        {
+          "type": "STRING",
+          "value": "int64in"
+        },
+        {
+          "type": "STRING",
+          "value": "int64out"
+        },
+        {
+          "type": "STRING",
+          "value": "mbbi"
+        },
+        {
+          "type": "STRING",
+          "value": "mbbiDirect"
+        },
+        {
+          "type": "STRING",
+          "value": "mbbo"
+        },
+        {
+          "type": "STRING",
+          "value": "mbboDirect"
+        },
+        {
+          "type": "STRING",
+          "value": "permissive"
+        },
+        {
+          "type": "STRING",
+          "value": "printf"
+        },
+        {
+          "type": "STRING",
+          "value": "sel"
+        },
+        {
+          "type": "STRING",
+          "value": "seq"
+        },
+        {
+          "type": "STRING",
+          "value": "state"
+        },
+        {
+          "type": "STRING",
+          "value": "stringin"
+        },
+        {
+          "type": "STRING",
+          "value": "stringout"
+        },
+        {
+          "type": "STRING",
+          "value": "lsi"
+        },
+        {
+          "type": "STRING",
+          "value": "lso"
+        },
+        {
+          "type": "STRING",
+          "value": "subArray"
+        },
+        {
+          "type": "STRING",
+          "value": "sub"
+        },
+        {
+          "type": "STRING",
+          "value": "waveform"
+        }
+      ]
     },
     "record_body": {
       "type": "SEQ",
@@ -107,8 +262,22 @@
           "value": "("
         },
         {
-          "type": "SYMBOL",
-          "name": "record_type"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "builtin_field_type"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_type"
+              },
+              "named": true,
+              "value": "field_type"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -121,6 +290,9091 @@
         {
           "type": "STRING",
           "value": ")"
+        }
+      ]
+    },
+    "builtin_field_type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "NAME"
+        },
+        {
+          "type": "STRING",
+          "value": "DESC"
+        },
+        {
+          "type": "STRING",
+          "value": "ASG"
+        },
+        {
+          "type": "STRING",
+          "value": "SCAN"
+        },
+        {
+          "type": "STRING",
+          "value": "PINI"
+        },
+        {
+          "type": "STRING",
+          "value": "PHAS"
+        },
+        {
+          "type": "STRING",
+          "value": "EVNT"
+        },
+        {
+          "type": "STRING",
+          "value": "TSE"
+        },
+        {
+          "type": "STRING",
+          "value": "TSEL"
+        },
+        {
+          "type": "STRING",
+          "value": "DTYP"
+        },
+        {
+          "type": "STRING",
+          "value": "DISV"
+        },
+        {
+          "type": "STRING",
+          "value": "DISA"
+        },
+        {
+          "type": "STRING",
+          "value": "SDIS"
+        },
+        {
+          "type": "STRING",
+          "value": "MLOK"
+        },
+        {
+          "type": "STRING",
+          "value": "MLIS"
+        },
+        {
+          "type": "STRING",
+          "value": "DISP"
+        },
+        {
+          "type": "STRING",
+          "value": "PROC"
+        },
+        {
+          "type": "STRING",
+          "value": "STAT"
+        },
+        {
+          "type": "STRING",
+          "value": "SEVR"
+        },
+        {
+          "type": "STRING",
+          "value": "NSTA"
+        },
+        {
+          "type": "STRING",
+          "value": "NSEV"
+        },
+        {
+          "type": "STRING",
+          "value": "ACKS"
+        },
+        {
+          "type": "STRING",
+          "value": "ACKT"
+        },
+        {
+          "type": "STRING",
+          "value": "DISS"
+        },
+        {
+          "type": "STRING",
+          "value": "LCNT"
+        },
+        {
+          "type": "STRING",
+          "value": "PACT"
+        },
+        {
+          "type": "STRING",
+          "value": "PUTF"
+        },
+        {
+          "type": "STRING",
+          "value": "RPRO"
+        },
+        {
+          "type": "STRING",
+          "value": "ASP"
+        },
+        {
+          "type": "STRING",
+          "value": "PPN"
+        },
+        {
+          "type": "STRING",
+          "value": "PPNR"
+        },
+        {
+          "type": "STRING",
+          "value": "SPVT"
+        },
+        {
+          "type": "STRING",
+          "value": "RSET"
+        },
+        {
+          "type": "STRING",
+          "value": "DSET"
+        },
+        {
+          "type": "STRING",
+          "value": "DPVT"
+        },
+        {
+          "type": "STRING",
+          "value": "RDES"
+        },
+        {
+          "type": "STRING",
+          "value": "LSET"
+        },
+        {
+          "type": "STRING",
+          "value": "PRIO"
+        },
+        {
+          "type": "STRING",
+          "value": "TPRO"
+        },
+        {
+          "type": "STRING",
+          "value": "BKPT"
+        },
+        {
+          "type": "STRING",
+          "value": "UDF"
+        },
+        {
+          "type": "STRING",
+          "value": "UDFS"
+        },
+        {
+          "type": "STRING",
+          "value": "TIME"
+        },
+        {
+          "type": "STRING",
+          "value": "FLNK"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "INP"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "NELM"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVL"
+        },
+        {
+          "type": "STRING",
+          "value": "NORD"
+        },
+        {
+          "type": "STRING",
+          "value": "BPTR"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "MPST"
+        },
+        {
+          "type": "STRING",
+          "value": "APST"
+        },
+        {
+          "type": "STRING",
+          "value": "HASH"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "OUT"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "NELM"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVL"
+        },
+        {
+          "type": "STRING",
+          "value": "NORD"
+        },
+        {
+          "type": "STRING",
+          "value": "BPTR"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "MPST"
+        },
+        {
+          "type": "STRING",
+          "value": "APST"
+        },
+        {
+          "type": "STRING",
+          "value": "HASH"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "INP"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "LINR"
+        },
+        {
+          "type": "STRING",
+          "value": "EGUF"
+        },
+        {
+          "type": "STRING",
+          "value": "EGUL"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "AOFF"
+        },
+        {
+          "type": "STRING",
+          "value": "ASLO"
+        },
+        {
+          "type": "STRING",
+          "value": "SMOO"
+        },
+        {
+          "type": "STRING",
+          "value": "HIHI"
+        },
+        {
+          "type": "STRING",
+          "value": "LOLO"
+        },
+        {
+          "type": "STRING",
+          "value": "HIGH"
+        },
+        {
+          "type": "STRING",
+          "value": "LOW"
+        },
+        {
+          "type": "STRING",
+          "value": "HHSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LLSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HYST"
+        },
+        {
+          "type": "STRING",
+          "value": "AFTC"
+        },
+        {
+          "type": "STRING",
+          "value": "ADEL"
+        },
+        {
+          "type": "STRING",
+          "value": "MDEL"
+        },
+        {
+          "type": "STRING",
+          "value": "LALM"
+        },
+        {
+          "type": "STRING",
+          "value": "AFVL"
+        },
+        {
+          "type": "STRING",
+          "value": "ALST"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "ESLO"
+        },
+        {
+          "type": "STRING",
+          "value": "EOFF"
+        },
+        {
+          "type": "STRING",
+          "value": "ROFF"
+        },
+        {
+          "type": "STRING",
+          "value": "PBRK"
+        },
+        {
+          "type": "STRING",
+          "value": "INIT"
+        },
+        {
+          "type": "STRING",
+          "value": "LBRK"
+        },
+        {
+          "type": "STRING",
+          "value": "RVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "ORAW"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OUT"
+        },
+        {
+          "type": "STRING",
+          "value": "OROC"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL"
+        },
+        {
+          "type": "STRING",
+          "value": "OMSL"
+        },
+        {
+          "type": "STRING",
+          "value": "OIF"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "LINR"
+        },
+        {
+          "type": "STRING",
+          "value": "EGUF"
+        },
+        {
+          "type": "STRING",
+          "value": "EGUL"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "ROFF"
+        },
+        {
+          "type": "STRING",
+          "value": "EOFF"
+        },
+        {
+          "type": "STRING",
+          "value": "ESLO"
+        },
+        {
+          "type": "STRING",
+          "value": "DRVH"
+        },
+        {
+          "type": "STRING",
+          "value": "DRVL"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "AOFF"
+        },
+        {
+          "type": "STRING",
+          "value": "ASLO"
+        },
+        {
+          "type": "STRING",
+          "value": "HIHI"
+        },
+        {
+          "type": "STRING",
+          "value": "LOLO"
+        },
+        {
+          "type": "STRING",
+          "value": "HIGH"
+        },
+        {
+          "type": "STRING",
+          "value": "LOW"
+        },
+        {
+          "type": "STRING",
+          "value": "HHSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LLSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HYST"
+        },
+        {
+          "type": "STRING",
+          "value": "ADEL"
+        },
+        {
+          "type": "STRING",
+          "value": "MDEL"
+        },
+        {
+          "type": "STRING",
+          "value": "RVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "ORAW"
+        },
+        {
+          "type": "STRING",
+          "value": "RBV"
+        },
+        {
+          "type": "STRING",
+          "value": "ORBV"
+        },
+        {
+          "type": "STRING",
+          "value": "PVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "LALM"
+        },
+        {
+          "type": "STRING",
+          "value": "ALST"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "PBRK"
+        },
+        {
+          "type": "STRING",
+          "value": "INIT"
+        },
+        {
+          "type": "STRING",
+          "value": "LBRK"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOA"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOV"
+        },
+        {
+          "type": "STRING",
+          "value": "OMOD"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "INAM"
+        },
+        {
+          "type": "STRING",
+          "value": "LFLG"
+        },
+        {
+          "type": "STRING",
+          "value": "SUBL"
+        },
+        {
+          "type": "STRING",
+          "value": "SNAM"
+        },
+        {
+          "type": "STRING",
+          "value": "ONAM"
+        },
+        {
+          "type": "STRING",
+          "value": "SADR"
+        },
+        {
+          "type": "STRING",
+          "value": "CADR"
+        },
+        {
+          "type": "STRING",
+          "value": "BRSV"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "EFLG"
+        },
+        {
+          "type": "STRING",
+          "value": "INPA"
+        },
+        {
+          "type": "STRING",
+          "value": "INPB"
+        },
+        {
+          "type": "STRING",
+          "value": "INPC"
+        },
+        {
+          "type": "STRING",
+          "value": "INPD"
+        },
+        {
+          "type": "STRING",
+          "value": "INPE"
+        },
+        {
+          "type": "STRING",
+          "value": "INPF"
+        },
+        {
+          "type": "STRING",
+          "value": "INPG"
+        },
+        {
+          "type": "STRING",
+          "value": "INPH"
+        },
+        {
+          "type": "STRING",
+          "value": "INPI"
+        },
+        {
+          "type": "STRING",
+          "value": "INPJ"
+        },
+        {
+          "type": "STRING",
+          "value": "INPK"
+        },
+        {
+          "type": "STRING",
+          "value": "INPL"
+        },
+        {
+          "type": "STRING",
+          "value": "INPM"
+        },
+        {
+          "type": "STRING",
+          "value": "INPN"
+        },
+        {
+          "type": "STRING",
+          "value": "INPO"
+        },
+        {
+          "type": "STRING",
+          "value": "INPP"
+        },
+        {
+          "type": "STRING",
+          "value": "INPQ"
+        },
+        {
+          "type": "STRING",
+          "value": "INPR"
+        },
+        {
+          "type": "STRING",
+          "value": "INPS"
+        },
+        {
+          "type": "STRING",
+          "value": "INPT"
+        },
+        {
+          "type": "STRING",
+          "value": "INPU"
+        },
+        {
+          "type": "STRING",
+          "value": "A"
+        },
+        {
+          "type": "STRING",
+          "value": "B"
+        },
+        {
+          "type": "STRING",
+          "value": "C"
+        },
+        {
+          "type": "STRING",
+          "value": "D"
+        },
+        {
+          "type": "STRING",
+          "value": "E"
+        },
+        {
+          "type": "STRING",
+          "value": "F"
+        },
+        {
+          "type": "STRING",
+          "value": "G"
+        },
+        {
+          "type": "STRING",
+          "value": "H"
+        },
+        {
+          "type": "STRING",
+          "value": "I"
+        },
+        {
+          "type": "STRING",
+          "value": "J"
+        },
+        {
+          "type": "STRING",
+          "value": "K"
+        },
+        {
+          "type": "STRING",
+          "value": "L"
+        },
+        {
+          "type": "STRING",
+          "value": "M"
+        },
+        {
+          "type": "STRING",
+          "value": "N"
+        },
+        {
+          "type": "STRING",
+          "value": "O"
+        },
+        {
+          "type": "STRING",
+          "value": "P"
+        },
+        {
+          "type": "STRING",
+          "value": "Q"
+        },
+        {
+          "type": "STRING",
+          "value": "R"
+        },
+        {
+          "type": "STRING",
+          "value": "S"
+        },
+        {
+          "type": "STRING",
+          "value": "T"
+        },
+        {
+          "type": "STRING",
+          "value": "U"
+        },
+        {
+          "type": "STRING",
+          "value": "FTA"
+        },
+        {
+          "type": "STRING",
+          "value": "FTB"
+        },
+        {
+          "type": "STRING",
+          "value": "FTC"
+        },
+        {
+          "type": "STRING",
+          "value": "FTD"
+        },
+        {
+          "type": "STRING",
+          "value": "FTE"
+        },
+        {
+          "type": "STRING",
+          "value": "FTF"
+        },
+        {
+          "type": "STRING",
+          "value": "FTG"
+        },
+        {
+          "type": "STRING",
+          "value": "FTH"
+        },
+        {
+          "type": "STRING",
+          "value": "FTI"
+        },
+        {
+          "type": "STRING",
+          "value": "FTJ"
+        },
+        {
+          "type": "STRING",
+          "value": "FTK"
+        },
+        {
+          "type": "STRING",
+          "value": "FTL"
+        },
+        {
+          "type": "STRING",
+          "value": "FTM"
+        },
+        {
+          "type": "STRING",
+          "value": "FTN"
+        },
+        {
+          "type": "STRING",
+          "value": "FTO"
+        },
+        {
+          "type": "STRING",
+          "value": "FTP"
+        },
+        {
+          "type": "STRING",
+          "value": "FTQ"
+        },
+        {
+          "type": "STRING",
+          "value": "FTR"
+        },
+        {
+          "type": "STRING",
+          "value": "FTS"
+        },
+        {
+          "type": "STRING",
+          "value": "FTT"
+        },
+        {
+          "type": "STRING",
+          "value": "FTU"
+        },
+        {
+          "type": "STRING",
+          "value": "NOA"
+        },
+        {
+          "type": "STRING",
+          "value": "NOB"
+        },
+        {
+          "type": "STRING",
+          "value": "NOC"
+        },
+        {
+          "type": "STRING",
+          "value": "NOD"
+        },
+        {
+          "type": "STRING",
+          "value": "NOE"
+        },
+        {
+          "type": "STRING",
+          "value": "NOF"
+        },
+        {
+          "type": "STRING",
+          "value": "NOG"
+        },
+        {
+          "type": "STRING",
+          "value": "NOH"
+        },
+        {
+          "type": "STRING",
+          "value": "NOI"
+        },
+        {
+          "type": "STRING",
+          "value": "NOJ"
+        },
+        {
+          "type": "STRING",
+          "value": "NOK"
+        },
+        {
+          "type": "STRING",
+          "value": "NOL"
+        },
+        {
+          "type": "STRING",
+          "value": "NOM"
+        },
+        {
+          "type": "STRING",
+          "value": "NON"
+        },
+        {
+          "type": "STRING",
+          "value": "NOO"
+        },
+        {
+          "type": "STRING",
+          "value": "NOP"
+        },
+        {
+          "type": "STRING",
+          "value": "NOQ"
+        },
+        {
+          "type": "STRING",
+          "value": "NOR"
+        },
+        {
+          "type": "STRING",
+          "value": "NOS"
+        },
+        {
+          "type": "STRING",
+          "value": "NOT"
+        },
+        {
+          "type": "STRING",
+          "value": "NOU"
+        },
+        {
+          "type": "STRING",
+          "value": "NEA"
+        },
+        {
+          "type": "STRING",
+          "value": "NEB"
+        },
+        {
+          "type": "STRING",
+          "value": "NEC"
+        },
+        {
+          "type": "STRING",
+          "value": "NED"
+        },
+        {
+          "type": "STRING",
+          "value": "NEE"
+        },
+        {
+          "type": "STRING",
+          "value": "NEF"
+        },
+        {
+          "type": "STRING",
+          "value": "NEG"
+        },
+        {
+          "type": "STRING",
+          "value": "NEH"
+        },
+        {
+          "type": "STRING",
+          "value": "NEI"
+        },
+        {
+          "type": "STRING",
+          "value": "NEJ"
+        },
+        {
+          "type": "STRING",
+          "value": "NEK"
+        },
+        {
+          "type": "STRING",
+          "value": "NEL"
+        },
+        {
+          "type": "STRING",
+          "value": "NEM"
+        },
+        {
+          "type": "STRING",
+          "value": "NEN"
+        },
+        {
+          "type": "STRING",
+          "value": "NEO"
+        },
+        {
+          "type": "STRING",
+          "value": "NEP"
+        },
+        {
+          "type": "STRING",
+          "value": "NEQ"
+        },
+        {
+          "type": "STRING",
+          "value": "NER"
+        },
+        {
+          "type": "STRING",
+          "value": "NES"
+        },
+        {
+          "type": "STRING",
+          "value": "NET"
+        },
+        {
+          "type": "STRING",
+          "value": "NEU"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTA"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTB"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTC"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTD"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTE"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTF"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTG"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTH"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTI"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTJ"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTK"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTL"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTM"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTN"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTO"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTP"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTQ"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTR"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTS"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTT"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTU"
+        },
+        {
+          "type": "STRING",
+          "value": "VALA"
+        },
+        {
+          "type": "STRING",
+          "value": "VALB"
+        },
+        {
+          "type": "STRING",
+          "value": "VALC"
+        },
+        {
+          "type": "STRING",
+          "value": "VALD"
+        },
+        {
+          "type": "STRING",
+          "value": "VALE"
+        },
+        {
+          "type": "STRING",
+          "value": "VALF"
+        },
+        {
+          "type": "STRING",
+          "value": "VALG"
+        },
+        {
+          "type": "STRING",
+          "value": "VALH"
+        },
+        {
+          "type": "STRING",
+          "value": "VALI"
+        },
+        {
+          "type": "STRING",
+          "value": "VALJ"
+        },
+        {
+          "type": "STRING",
+          "value": "VALK"
+        },
+        {
+          "type": "STRING",
+          "value": "VALL"
+        },
+        {
+          "type": "STRING",
+          "value": "VALM"
+        },
+        {
+          "type": "STRING",
+          "value": "VALN"
+        },
+        {
+          "type": "STRING",
+          "value": "VALO"
+        },
+        {
+          "type": "STRING",
+          "value": "VALP"
+        },
+        {
+          "type": "STRING",
+          "value": "VALQ"
+        },
+        {
+          "type": "STRING",
+          "value": "VALR"
+        },
+        {
+          "type": "STRING",
+          "value": "VALS"
+        },
+        {
+          "type": "STRING",
+          "value": "VALT"
+        },
+        {
+          "type": "STRING",
+          "value": "VALU"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLA"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLB"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLC"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLD"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLE"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLF"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLG"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLH"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLI"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLJ"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLK"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLL"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLM"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLN"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLO"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLP"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLQ"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLR"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLS"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLT"
+        },
+        {
+          "type": "STRING",
+          "value": "OVLU"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVA"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVB"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVC"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVD"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVE"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVF"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVG"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVH"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVI"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVJ"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVK"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVL"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVM"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVN"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVO"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVP"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVQ"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVR"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVS"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVT"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVU"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVA"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVB"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVC"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVD"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVE"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVF"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVG"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVH"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVI"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVJ"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVK"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVL"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVM"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVN"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVO"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVP"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVQ"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVR"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVS"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVT"
+        },
+        {
+          "type": "STRING",
+          "value": "NOVU"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVA"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVB"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVC"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVD"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVE"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVF"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVG"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVH"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVI"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVJ"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVK"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVL"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVM"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVN"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVO"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVP"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVQ"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVR"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVS"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVT"
+        },
+        {
+          "type": "STRING",
+          "value": "NEVU"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVA"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVB"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVC"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVD"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVE"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVF"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVG"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVH"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVI"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVJ"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVK"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVL"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVM"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVN"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVO"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVP"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVQ"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVR"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVS"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVT"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVU"
+        },
+        {
+          "type": "STRING",
+          "value": "INP"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "ZSV"
+        },
+        {
+          "type": "STRING",
+          "value": "OSV"
+        },
+        {
+          "type": "STRING",
+          "value": "COSV"
+        },
+        {
+          "type": "STRING",
+          "value": "ZNAM"
+        },
+        {
+          "type": "STRING",
+          "value": "ONAM"
+        },
+        {
+          "type": "STRING",
+          "value": "RVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "ORAW"
+        },
+        {
+          "type": "STRING",
+          "value": "MASK"
+        },
+        {
+          "type": "STRING",
+          "value": "LALM"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OMSL"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL"
+        },
+        {
+          "type": "STRING",
+          "value": "OUT"
+        },
+        {
+          "type": "STRING",
+          "value": "HIGH"
+        },
+        {
+          "type": "STRING",
+          "value": "ZNAM"
+        },
+        {
+          "type": "STRING",
+          "value": "ONAM"
+        },
+        {
+          "type": "STRING",
+          "value": "RVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "ORAW"
+        },
+        {
+          "type": "STRING",
+          "value": "MASK"
+        },
+        {
+          "type": "STRING",
+          "value": "RPVT"
+        },
+        {
+          "type": "STRING",
+          "value": "WDPT"
+        },
+        {
+          "type": "STRING",
+          "value": "ZSV"
+        },
+        {
+          "type": "STRING",
+          "value": "OSV"
+        },
+        {
+          "type": "STRING",
+          "value": "COSV"
+        },
+        {
+          "type": "STRING",
+          "value": "RBV"
+        },
+        {
+          "type": "STRING",
+          "value": "ORBV"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "LALM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOA"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOV"
+        },
+        {
+          "type": "STRING",
+          "value": "RPVT"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "PVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "CALC"
+        },
+        {
+          "type": "STRING",
+          "value": "CLCV"
+        },
+        {
+          "type": "STRING",
+          "value": "INPA"
+        },
+        {
+          "type": "STRING",
+          "value": "INPB"
+        },
+        {
+          "type": "STRING",
+          "value": "INPC"
+        },
+        {
+          "type": "STRING",
+          "value": "INPD"
+        },
+        {
+          "type": "STRING",
+          "value": "INPE"
+        },
+        {
+          "type": "STRING",
+          "value": "INPF"
+        },
+        {
+          "type": "STRING",
+          "value": "INPG"
+        },
+        {
+          "type": "STRING",
+          "value": "INPH"
+        },
+        {
+          "type": "STRING",
+          "value": "INPI"
+        },
+        {
+          "type": "STRING",
+          "value": "INPJ"
+        },
+        {
+          "type": "STRING",
+          "value": "INPK"
+        },
+        {
+          "type": "STRING",
+          "value": "INPL"
+        },
+        {
+          "type": "STRING",
+          "value": "OUT"
+        },
+        {
+          "type": "STRING",
+          "value": "INAV"
+        },
+        {
+          "type": "STRING",
+          "value": "INBV"
+        },
+        {
+          "type": "STRING",
+          "value": "INCV"
+        },
+        {
+          "type": "STRING",
+          "value": "INDV"
+        },
+        {
+          "type": "STRING",
+          "value": "INEV"
+        },
+        {
+          "type": "STRING",
+          "value": "INFV"
+        },
+        {
+          "type": "STRING",
+          "value": "INGV"
+        },
+        {
+          "type": "STRING",
+          "value": "INHV"
+        },
+        {
+          "type": "STRING",
+          "value": "INIV"
+        },
+        {
+          "type": "STRING",
+          "value": "INJV"
+        },
+        {
+          "type": "STRING",
+          "value": "INKV"
+        },
+        {
+          "type": "STRING",
+          "value": "INLV"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTV"
+        },
+        {
+          "type": "STRING",
+          "value": "OOPT"
+        },
+        {
+          "type": "STRING",
+          "value": "ODLY"
+        },
+        {
+          "type": "STRING",
+          "value": "DLYA"
+        },
+        {
+          "type": "STRING",
+          "value": "DOPT"
+        },
+        {
+          "type": "STRING",
+          "value": "OCAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OCLV"
+        },
+        {
+          "type": "STRING",
+          "value": "OEVT"
+        },
+        {
+          "type": "STRING",
+          "value": "EPVT"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOA"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOV"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "HIHI"
+        },
+        {
+          "type": "STRING",
+          "value": "LOLO"
+        },
+        {
+          "type": "STRING",
+          "value": "HIGH"
+        },
+        {
+          "type": "STRING",
+          "value": "LOW"
+        },
+        {
+          "type": "STRING",
+          "value": "HHSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LLSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HYST"
+        },
+        {
+          "type": "STRING",
+          "value": "ADEL"
+        },
+        {
+          "type": "STRING",
+          "value": "MDEL"
+        },
+        {
+          "type": "STRING",
+          "value": "A"
+        },
+        {
+          "type": "STRING",
+          "value": "B"
+        },
+        {
+          "type": "STRING",
+          "value": "C"
+        },
+        {
+          "type": "STRING",
+          "value": "D"
+        },
+        {
+          "type": "STRING",
+          "value": "E"
+        },
+        {
+          "type": "STRING",
+          "value": "F"
+        },
+        {
+          "type": "STRING",
+          "value": "G"
+        },
+        {
+          "type": "STRING",
+          "value": "H"
+        },
+        {
+          "type": "STRING",
+          "value": "I"
+        },
+        {
+          "type": "STRING",
+          "value": "J"
+        },
+        {
+          "type": "STRING",
+          "value": "K"
+        },
+        {
+          "type": "STRING",
+          "value": "L"
+        },
+        {
+          "type": "STRING",
+          "value": "OVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "LA"
+        },
+        {
+          "type": "STRING",
+          "value": "LB"
+        },
+        {
+          "type": "STRING",
+          "value": "LC"
+        },
+        {
+          "type": "STRING",
+          "value": "LD"
+        },
+        {
+          "type": "STRING",
+          "value": "LE"
+        },
+        {
+          "type": "STRING",
+          "value": "LF"
+        },
+        {
+          "type": "STRING",
+          "value": "LG"
+        },
+        {
+          "type": "STRING",
+          "value": "LH"
+        },
+        {
+          "type": "STRING",
+          "value": "LI"
+        },
+        {
+          "type": "STRING",
+          "value": "LJ"
+        },
+        {
+          "type": "STRING",
+          "value": "LK"
+        },
+        {
+          "type": "STRING",
+          "value": "LL"
+        },
+        {
+          "type": "STRING",
+          "value": "POVL"
+        },
+        {
+          "type": "STRING",
+          "value": "LALM"
+        },
+        {
+          "type": "STRING",
+          "value": "ALST"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "RPCL"
+        },
+        {
+          "type": "STRING",
+          "value": "ORPC"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "CALC"
+        },
+        {
+          "type": "STRING",
+          "value": "INPA"
+        },
+        {
+          "type": "STRING",
+          "value": "INPB"
+        },
+        {
+          "type": "STRING",
+          "value": "INPC"
+        },
+        {
+          "type": "STRING",
+          "value": "INPD"
+        },
+        {
+          "type": "STRING",
+          "value": "INPE"
+        },
+        {
+          "type": "STRING",
+          "value": "INPF"
+        },
+        {
+          "type": "STRING",
+          "value": "INPG"
+        },
+        {
+          "type": "STRING",
+          "value": "INPH"
+        },
+        {
+          "type": "STRING",
+          "value": "INPI"
+        },
+        {
+          "type": "STRING",
+          "value": "INPJ"
+        },
+        {
+          "type": "STRING",
+          "value": "INPK"
+        },
+        {
+          "type": "STRING",
+          "value": "INPL"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "HIHI"
+        },
+        {
+          "type": "STRING",
+          "value": "LOLO"
+        },
+        {
+          "type": "STRING",
+          "value": "HIGH"
+        },
+        {
+          "type": "STRING",
+          "value": "LOW"
+        },
+        {
+          "type": "STRING",
+          "value": "HHSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LLSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LSV"
+        },
+        {
+          "type": "STRING",
+          "value": "AFTC"
+        },
+        {
+          "type": "STRING",
+          "value": "AFVL"
+        },
+        {
+          "type": "STRING",
+          "value": "HYST"
+        },
+        {
+          "type": "STRING",
+          "value": "ADEL"
+        },
+        {
+          "type": "STRING",
+          "value": "MDEL"
+        },
+        {
+          "type": "STRING",
+          "value": "A"
+        },
+        {
+          "type": "STRING",
+          "value": "B"
+        },
+        {
+          "type": "STRING",
+          "value": "C"
+        },
+        {
+          "type": "STRING",
+          "value": "D"
+        },
+        {
+          "type": "STRING",
+          "value": "E"
+        },
+        {
+          "type": "STRING",
+          "value": "F"
+        },
+        {
+          "type": "STRING",
+          "value": "G"
+        },
+        {
+          "type": "STRING",
+          "value": "H"
+        },
+        {
+          "type": "STRING",
+          "value": "I"
+        },
+        {
+          "type": "STRING",
+          "value": "J"
+        },
+        {
+          "type": "STRING",
+          "value": "K"
+        },
+        {
+          "type": "STRING",
+          "value": "L"
+        },
+        {
+          "type": "STRING",
+          "value": "LA"
+        },
+        {
+          "type": "STRING",
+          "value": "LB"
+        },
+        {
+          "type": "STRING",
+          "value": "LC"
+        },
+        {
+          "type": "STRING",
+          "value": "LD"
+        },
+        {
+          "type": "STRING",
+          "value": "LE"
+        },
+        {
+          "type": "STRING",
+          "value": "LF"
+        },
+        {
+          "type": "STRING",
+          "value": "LG"
+        },
+        {
+          "type": "STRING",
+          "value": "LH"
+        },
+        {
+          "type": "STRING",
+          "value": "LI"
+        },
+        {
+          "type": "STRING",
+          "value": "LJ"
+        },
+        {
+          "type": "STRING",
+          "value": "LK"
+        },
+        {
+          "type": "STRING",
+          "value": "LL"
+        },
+        {
+          "type": "STRING",
+          "value": "LALM"
+        },
+        {
+          "type": "STRING",
+          "value": "ALST"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "RPCL"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "INP"
+        },
+        {
+          "type": "STRING",
+          "value": "RES"
+        },
+        {
+          "type": "STRING",
+          "value": "ALG"
+        },
+        {
+          "type": "STRING",
+          "value": "NSAM"
+        },
+        {
+          "type": "STRING",
+          "value": "N"
+        },
+        {
+          "type": "STRING",
+          "value": "IHIL"
+        },
+        {
+          "type": "STRING",
+          "value": "ILIL"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "OFF"
+        },
+        {
+          "type": "STRING",
+          "value": "NUSE"
+        },
+        {
+          "type": "STRING",
+          "value": "OUSE"
+        },
+        {
+          "type": "STRING",
+          "value": "BPTR"
+        },
+        {
+          "type": "STRING",
+          "value": "SPTR"
+        },
+        {
+          "type": "STRING",
+          "value": "WPTR"
+        },
+        {
+          "type": "STRING",
+          "value": "INPN"
+        },
+        {
+          "type": "STRING",
+          "value": "CVB"
+        },
+        {
+          "type": "STRING",
+          "value": "INX"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SELM"
+        },
+        {
+          "type": "STRING",
+          "value": "SELN"
+        },
+        {
+          "type": "STRING",
+          "value": "SELL"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTA"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTB"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTC"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTD"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTE"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTF"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTG"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTH"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL"
+        },
+        {
+          "type": "STRING",
+          "value": "OMSL"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "HIHI"
+        },
+        {
+          "type": "STRING",
+          "value": "LOLO"
+        },
+        {
+          "type": "STRING",
+          "value": "HIGH"
+        },
+        {
+          "type": "STRING",
+          "value": "LOW"
+        },
+        {
+          "type": "STRING",
+          "value": "HHSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LLSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HYST"
+        },
+        {
+          "type": "STRING",
+          "value": "ADEL"
+        },
+        {
+          "type": "STRING",
+          "value": "MDEL"
+        },
+        {
+          "type": "STRING",
+          "value": "LALM"
+        },
+        {
+          "type": "STRING",
+          "value": "ALST"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "EPVT"
+        },
+        {
+          "type": "STRING",
+          "value": "INP"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SELM"
+        },
+        {
+          "type": "STRING",
+          "value": "SELN"
+        },
+        {
+          "type": "STRING",
+          "value": "SELL"
+        },
+        {
+          "type": "STRING",
+          "value": "OFFS"
+        },
+        {
+          "type": "STRING",
+          "value": "SHFT"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK0"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK1"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK2"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK3"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK4"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK5"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK6"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK7"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK8"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK9"
+        },
+        {
+          "type": "STRING",
+          "value": "LNKA"
+        },
+        {
+          "type": "STRING",
+          "value": "LNKB"
+        },
+        {
+          "type": "STRING",
+          "value": "LNKC"
+        },
+        {
+          "type": "STRING",
+          "value": "LNKD"
+        },
+        {
+          "type": "STRING",
+          "value": "LNKE"
+        },
+        {
+          "type": "STRING",
+          "value": "LNKF"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "NELM"
+        },
+        {
+          "type": "STRING",
+          "value": "CSTA"
+        },
+        {
+          "type": "STRING",
+          "value": "CMD"
+        },
+        {
+          "type": "STRING",
+          "value": "ULIM"
+        },
+        {
+          "type": "STRING",
+          "value": "LLIM"
+        },
+        {
+          "type": "STRING",
+          "value": "WDTH"
+        },
+        {
+          "type": "STRING",
+          "value": "SGNL"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "SVL"
+        },
+        {
+          "type": "STRING",
+          "value": "BPTR"
+        },
+        {
+          "type": "STRING",
+          "value": "WDOG"
+        },
+        {
+          "type": "STRING",
+          "value": "MDEL"
+        },
+        {
+          "type": "STRING",
+          "value": "MCNT"
+        },
+        {
+          "type": "STRING",
+          "value": "SDEL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "INP"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "HIHI"
+        },
+        {
+          "type": "STRING",
+          "value": "LOLO"
+        },
+        {
+          "type": "STRING",
+          "value": "HIGH"
+        },
+        {
+          "type": "STRING",
+          "value": "LOW"
+        },
+        {
+          "type": "STRING",
+          "value": "HHSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LLSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HYST"
+        },
+        {
+          "type": "STRING",
+          "value": "AFTC"
+        },
+        {
+          "type": "STRING",
+          "value": "AFVL"
+        },
+        {
+          "type": "STRING",
+          "value": "ADEL"
+        },
+        {
+          "type": "STRING",
+          "value": "MDEL"
+        },
+        {
+          "type": "STRING",
+          "value": "LALM"
+        },
+        {
+          "type": "STRING",
+          "value": "ALST"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OUT"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL"
+        },
+        {
+          "type": "STRING",
+          "value": "OMSL"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "DRVH"
+        },
+        {
+          "type": "STRING",
+          "value": "DRVL"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "HIHI"
+        },
+        {
+          "type": "STRING",
+          "value": "LOLO"
+        },
+        {
+          "type": "STRING",
+          "value": "HIGH"
+        },
+        {
+          "type": "STRING",
+          "value": "LOW"
+        },
+        {
+          "type": "STRING",
+          "value": "HHSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LLSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HYST"
+        },
+        {
+          "type": "STRING",
+          "value": "ADEL"
+        },
+        {
+          "type": "STRING",
+          "value": "MDEL"
+        },
+        {
+          "type": "STRING",
+          "value": "LALM"
+        },
+        {
+          "type": "STRING",
+          "value": "ALST"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOA"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOV"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIZV"
+        },
+        {
+          "type": "STRING",
+          "value": "LEN"
+        },
+        {
+          "type": "STRING",
+          "value": "OLEN"
+        },
+        {
+          "type": "STRING",
+          "value": "INP"
+        },
+        {
+          "type": "STRING",
+          "value": "MPST"
+        },
+        {
+          "type": "STRING",
+          "value": "APST"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIZV"
+        },
+        {
+          "type": "STRING",
+          "value": "LEN"
+        },
+        {
+          "type": "STRING",
+          "value": "OLEN"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOA"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOV"
+        },
+        {
+          "type": "STRING",
+          "value": "OMSL"
+        },
+        {
+          "type": "STRING",
+          "value": "OUT"
+        },
+        {
+          "type": "STRING",
+          "value": "MPST"
+        },
+        {
+          "type": "STRING",
+          "value": "APST"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "NOBT"
+        },
+        {
+          "type": "STRING",
+          "value": "INP"
+        },
+        {
+          "type": "STRING",
+          "value": "RVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "ORAW"
+        },
+        {
+          "type": "STRING",
+          "value": "MASK"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "SHFT"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "B0"
+        },
+        {
+          "type": "STRING",
+          "value": "B1"
+        },
+        {
+          "type": "STRING",
+          "value": "B2"
+        },
+        {
+          "type": "STRING",
+          "value": "B3"
+        },
+        {
+          "type": "STRING",
+          "value": "B4"
+        },
+        {
+          "type": "STRING",
+          "value": "B5"
+        },
+        {
+          "type": "STRING",
+          "value": "B6"
+        },
+        {
+          "type": "STRING",
+          "value": "B7"
+        },
+        {
+          "type": "STRING",
+          "value": "B8"
+        },
+        {
+          "type": "STRING",
+          "value": "B9"
+        },
+        {
+          "type": "STRING",
+          "value": "BA"
+        },
+        {
+          "type": "STRING",
+          "value": "BB"
+        },
+        {
+          "type": "STRING",
+          "value": "BC"
+        },
+        {
+          "type": "STRING",
+          "value": "BD"
+        },
+        {
+          "type": "STRING",
+          "value": "BE"
+        },
+        {
+          "type": "STRING",
+          "value": "BF"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "NOBT"
+        },
+        {
+          "type": "STRING",
+          "value": "INP"
+        },
+        {
+          "type": "STRING",
+          "value": "ZRVL"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVL"
+        },
+        {
+          "type": "STRING",
+          "value": "TWVL"
+        },
+        {
+          "type": "STRING",
+          "value": "THVL"
+        },
+        {
+          "type": "STRING",
+          "value": "FRVL"
+        },
+        {
+          "type": "STRING",
+          "value": "FVVL"
+        },
+        {
+          "type": "STRING",
+          "value": "SXVL"
+        },
+        {
+          "type": "STRING",
+          "value": "SVVL"
+        },
+        {
+          "type": "STRING",
+          "value": "EIVL"
+        },
+        {
+          "type": "STRING",
+          "value": "NIVL"
+        },
+        {
+          "type": "STRING",
+          "value": "TEVL"
+        },
+        {
+          "type": "STRING",
+          "value": "ELVL"
+        },
+        {
+          "type": "STRING",
+          "value": "TVVL"
+        },
+        {
+          "type": "STRING",
+          "value": "TTVL"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVL"
+        },
+        {
+          "type": "STRING",
+          "value": "FFVL"
+        },
+        {
+          "type": "STRING",
+          "value": "ZRST"
+        },
+        {
+          "type": "STRING",
+          "value": "ONST"
+        },
+        {
+          "type": "STRING",
+          "value": "TWST"
+        },
+        {
+          "type": "STRING",
+          "value": "THST"
+        },
+        {
+          "type": "STRING",
+          "value": "FRST"
+        },
+        {
+          "type": "STRING",
+          "value": "FVST"
+        },
+        {
+          "type": "STRING",
+          "value": "SXST"
+        },
+        {
+          "type": "STRING",
+          "value": "SVST"
+        },
+        {
+          "type": "STRING",
+          "value": "EIST"
+        },
+        {
+          "type": "STRING",
+          "value": "NIST"
+        },
+        {
+          "type": "STRING",
+          "value": "TEST"
+        },
+        {
+          "type": "STRING",
+          "value": "ELST"
+        },
+        {
+          "type": "STRING",
+          "value": "TVST"
+        },
+        {
+          "type": "STRING",
+          "value": "TTST"
+        },
+        {
+          "type": "STRING",
+          "value": "FTST"
+        },
+        {
+          "type": "STRING",
+          "value": "FFST"
+        },
+        {
+          "type": "STRING",
+          "value": "ZRSV"
+        },
+        {
+          "type": "STRING",
+          "value": "ONSV"
+        },
+        {
+          "type": "STRING",
+          "value": "TWSV"
+        },
+        {
+          "type": "STRING",
+          "value": "THSV"
+        },
+        {
+          "type": "STRING",
+          "value": "FRSV"
+        },
+        {
+          "type": "STRING",
+          "value": "FVSV"
+        },
+        {
+          "type": "STRING",
+          "value": "SXSV"
+        },
+        {
+          "type": "STRING",
+          "value": "SVSV"
+        },
+        {
+          "type": "STRING",
+          "value": "EISV"
+        },
+        {
+          "type": "STRING",
+          "value": "NISV"
+        },
+        {
+          "type": "STRING",
+          "value": "TESV"
+        },
+        {
+          "type": "STRING",
+          "value": "ELSV"
+        },
+        {
+          "type": "STRING",
+          "value": "TVSV"
+        },
+        {
+          "type": "STRING",
+          "value": "TTSV"
+        },
+        {
+          "type": "STRING",
+          "value": "FTSV"
+        },
+        {
+          "type": "STRING",
+          "value": "FFSV"
+        },
+        {
+          "type": "STRING",
+          "value": "AFTC"
+        },
+        {
+          "type": "STRING",
+          "value": "AFVL"
+        },
+        {
+          "type": "STRING",
+          "value": "UNSV"
+        },
+        {
+          "type": "STRING",
+          "value": "COSV"
+        },
+        {
+          "type": "STRING",
+          "value": "RVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "ORAW"
+        },
+        {
+          "type": "STRING",
+          "value": "MASK"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "LALM"
+        },
+        {
+          "type": "STRING",
+          "value": "SDEF"
+        },
+        {
+          "type": "STRING",
+          "value": "SHFT"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OMSL"
+        },
+        {
+          "type": "STRING",
+          "value": "NOBT"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL"
+        },
+        {
+          "type": "STRING",
+          "value": "OUT"
+        },
+        {
+          "type": "STRING",
+          "value": "B0"
+        },
+        {
+          "type": "STRING",
+          "value": "B1"
+        },
+        {
+          "type": "STRING",
+          "value": "B2"
+        },
+        {
+          "type": "STRING",
+          "value": "B3"
+        },
+        {
+          "type": "STRING",
+          "value": "B4"
+        },
+        {
+          "type": "STRING",
+          "value": "B5"
+        },
+        {
+          "type": "STRING",
+          "value": "B6"
+        },
+        {
+          "type": "STRING",
+          "value": "B7"
+        },
+        {
+          "type": "STRING",
+          "value": "B8"
+        },
+        {
+          "type": "STRING",
+          "value": "B9"
+        },
+        {
+          "type": "STRING",
+          "value": "BA"
+        },
+        {
+          "type": "STRING",
+          "value": "BB"
+        },
+        {
+          "type": "STRING",
+          "value": "BC"
+        },
+        {
+          "type": "STRING",
+          "value": "BD"
+        },
+        {
+          "type": "STRING",
+          "value": "BE"
+        },
+        {
+          "type": "STRING",
+          "value": "BF"
+        },
+        {
+          "type": "STRING",
+          "value": "RVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "ORAW"
+        },
+        {
+          "type": "STRING",
+          "value": "RBV"
+        },
+        {
+          "type": "STRING",
+          "value": "ORBV"
+        },
+        {
+          "type": "STRING",
+          "value": "MASK"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "SHFT"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOA"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOV"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL"
+        },
+        {
+          "type": "STRING",
+          "value": "OMSL"
+        },
+        {
+          "type": "STRING",
+          "value": "NOBT"
+        },
+        {
+          "type": "STRING",
+          "value": "OUT"
+        },
+        {
+          "type": "STRING",
+          "value": "ZRVL"
+        },
+        {
+          "type": "STRING",
+          "value": "ONVL"
+        },
+        {
+          "type": "STRING",
+          "value": "TWVL"
+        },
+        {
+          "type": "STRING",
+          "value": "THVL"
+        },
+        {
+          "type": "STRING",
+          "value": "FRVL"
+        },
+        {
+          "type": "STRING",
+          "value": "FVVL"
+        },
+        {
+          "type": "STRING",
+          "value": "SXVL"
+        },
+        {
+          "type": "STRING",
+          "value": "SVVL"
+        },
+        {
+          "type": "STRING",
+          "value": "EIVL"
+        },
+        {
+          "type": "STRING",
+          "value": "NIVL"
+        },
+        {
+          "type": "STRING",
+          "value": "TEVL"
+        },
+        {
+          "type": "STRING",
+          "value": "ELVL"
+        },
+        {
+          "type": "STRING",
+          "value": "TVVL"
+        },
+        {
+          "type": "STRING",
+          "value": "TTVL"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVL"
+        },
+        {
+          "type": "STRING",
+          "value": "FFVL"
+        },
+        {
+          "type": "STRING",
+          "value": "ZRST"
+        },
+        {
+          "type": "STRING",
+          "value": "ONST"
+        },
+        {
+          "type": "STRING",
+          "value": "TWST"
+        },
+        {
+          "type": "STRING",
+          "value": "THST"
+        },
+        {
+          "type": "STRING",
+          "value": "FRST"
+        },
+        {
+          "type": "STRING",
+          "value": "FVST"
+        },
+        {
+          "type": "STRING",
+          "value": "SXST"
+        },
+        {
+          "type": "STRING",
+          "value": "SVST"
+        },
+        {
+          "type": "STRING",
+          "value": "EIST"
+        },
+        {
+          "type": "STRING",
+          "value": "NIST"
+        },
+        {
+          "type": "STRING",
+          "value": "TEST"
+        },
+        {
+          "type": "STRING",
+          "value": "ELST"
+        },
+        {
+          "type": "STRING",
+          "value": "TVST"
+        },
+        {
+          "type": "STRING",
+          "value": "TTST"
+        },
+        {
+          "type": "STRING",
+          "value": "FTST"
+        },
+        {
+          "type": "STRING",
+          "value": "FFST"
+        },
+        {
+          "type": "STRING",
+          "value": "ZRSV"
+        },
+        {
+          "type": "STRING",
+          "value": "ONSV"
+        },
+        {
+          "type": "STRING",
+          "value": "TWSV"
+        },
+        {
+          "type": "STRING",
+          "value": "THSV"
+        },
+        {
+          "type": "STRING",
+          "value": "FRSV"
+        },
+        {
+          "type": "STRING",
+          "value": "FVSV"
+        },
+        {
+          "type": "STRING",
+          "value": "SXSV"
+        },
+        {
+          "type": "STRING",
+          "value": "SVSV"
+        },
+        {
+          "type": "STRING",
+          "value": "EISV"
+        },
+        {
+          "type": "STRING",
+          "value": "NISV"
+        },
+        {
+          "type": "STRING",
+          "value": "TESV"
+        },
+        {
+          "type": "STRING",
+          "value": "ELSV"
+        },
+        {
+          "type": "STRING",
+          "value": "TVSV"
+        },
+        {
+          "type": "STRING",
+          "value": "TTSV"
+        },
+        {
+          "type": "STRING",
+          "value": "FTSV"
+        },
+        {
+          "type": "STRING",
+          "value": "FFSV"
+        },
+        {
+          "type": "STRING",
+          "value": "UNSV"
+        },
+        {
+          "type": "STRING",
+          "value": "COSV"
+        },
+        {
+          "type": "STRING",
+          "value": "RVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "ORAW"
+        },
+        {
+          "type": "STRING",
+          "value": "RBV"
+        },
+        {
+          "type": "STRING",
+          "value": "ORBV"
+        },
+        {
+          "type": "STRING",
+          "value": "MASK"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "LALM"
+        },
+        {
+          "type": "STRING",
+          "value": "SDEF"
+        },
+        {
+          "type": "STRING",
+          "value": "SHFT"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOA"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOV"
+        },
+        {
+          "type": "STRING",
+          "value": "LABL"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "WFLG"
+        },
+        {
+          "type": "STRING",
+          "value": "OFLG"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIZV"
+        },
+        {
+          "type": "STRING",
+          "value": "LEN"
+        },
+        {
+          "type": "STRING",
+          "value": "OUT"
+        },
+        {
+          "type": "STRING",
+          "value": "FMT"
+        },
+        {
+          "type": "STRING",
+          "value": "IVLS"
+        },
+        {
+          "type": "STRING",
+          "value": "INP0"
+        },
+        {
+          "type": "STRING",
+          "value": "INP1"
+        },
+        {
+          "type": "STRING",
+          "value": "INP2"
+        },
+        {
+          "type": "STRING",
+          "value": "INP3"
+        },
+        {
+          "type": "STRING",
+          "value": "INP4"
+        },
+        {
+          "type": "STRING",
+          "value": "INP5"
+        },
+        {
+          "type": "STRING",
+          "value": "INP6"
+        },
+        {
+          "type": "STRING",
+          "value": "INP7"
+        },
+        {
+          "type": "STRING",
+          "value": "INP8"
+        },
+        {
+          "type": "STRING",
+          "value": "INP9"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SELM"
+        },
+        {
+          "type": "STRING",
+          "value": "SELN"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "NVL"
+        },
+        {
+          "type": "STRING",
+          "value": "INPA"
+        },
+        {
+          "type": "STRING",
+          "value": "INPB"
+        },
+        {
+          "type": "STRING",
+          "value": "INPC"
+        },
+        {
+          "type": "STRING",
+          "value": "INPD"
+        },
+        {
+          "type": "STRING",
+          "value": "INPE"
+        },
+        {
+          "type": "STRING",
+          "value": "INPF"
+        },
+        {
+          "type": "STRING",
+          "value": "INPG"
+        },
+        {
+          "type": "STRING",
+          "value": "INPH"
+        },
+        {
+          "type": "STRING",
+          "value": "INPI"
+        },
+        {
+          "type": "STRING",
+          "value": "INPJ"
+        },
+        {
+          "type": "STRING",
+          "value": "INPK"
+        },
+        {
+          "type": "STRING",
+          "value": "INPL"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "HIHI"
+        },
+        {
+          "type": "STRING",
+          "value": "LOLO"
+        },
+        {
+          "type": "STRING",
+          "value": "HIGH"
+        },
+        {
+          "type": "STRING",
+          "value": "LOW"
+        },
+        {
+          "type": "STRING",
+          "value": "HHSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LLSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HYST"
+        },
+        {
+          "type": "STRING",
+          "value": "ADEL"
+        },
+        {
+          "type": "STRING",
+          "value": "MDEL"
+        },
+        {
+          "type": "STRING",
+          "value": "A"
+        },
+        {
+          "type": "STRING",
+          "value": "B"
+        },
+        {
+          "type": "STRING",
+          "value": "C"
+        },
+        {
+          "type": "STRING",
+          "value": "D"
+        },
+        {
+          "type": "STRING",
+          "value": "E"
+        },
+        {
+          "type": "STRING",
+          "value": "F"
+        },
+        {
+          "type": "STRING",
+          "value": "G"
+        },
+        {
+          "type": "STRING",
+          "value": "H"
+        },
+        {
+          "type": "STRING",
+          "value": "I"
+        },
+        {
+          "type": "STRING",
+          "value": "J"
+        },
+        {
+          "type": "STRING",
+          "value": "K"
+        },
+        {
+          "type": "STRING",
+          "value": "L"
+        },
+        {
+          "type": "STRING",
+          "value": "LA"
+        },
+        {
+          "type": "STRING",
+          "value": "LB"
+        },
+        {
+          "type": "STRING",
+          "value": "LC"
+        },
+        {
+          "type": "STRING",
+          "value": "LD"
+        },
+        {
+          "type": "STRING",
+          "value": "LE"
+        },
+        {
+          "type": "STRING",
+          "value": "LF"
+        },
+        {
+          "type": "STRING",
+          "value": "LG"
+        },
+        {
+          "type": "STRING",
+          "value": "LH"
+        },
+        {
+          "type": "STRING",
+          "value": "LI"
+        },
+        {
+          "type": "STRING",
+          "value": "LJ"
+        },
+        {
+          "type": "STRING",
+          "value": "LK"
+        },
+        {
+          "type": "STRING",
+          "value": "LL"
+        },
+        {
+          "type": "STRING",
+          "value": "LALM"
+        },
+        {
+          "type": "STRING",
+          "value": "ALST"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "NLST"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SELM"
+        },
+        {
+          "type": "STRING",
+          "value": "SELN"
+        },
+        {
+          "type": "STRING",
+          "value": "SELL"
+        },
+        {
+          "type": "STRING",
+          "value": "OFFS"
+        },
+        {
+          "type": "STRING",
+          "value": "SHFT"
+        },
+        {
+          "type": "STRING",
+          "value": "OLDN"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "DLY0"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL0"
+        },
+        {
+          "type": "STRING",
+          "value": "DO0"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK0"
+        },
+        {
+          "type": "STRING",
+          "value": "DLY1"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL1"
+        },
+        {
+          "type": "STRING",
+          "value": "DO1"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK1"
+        },
+        {
+          "type": "STRING",
+          "value": "DLY2"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL2"
+        },
+        {
+          "type": "STRING",
+          "value": "DO2"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK2"
+        },
+        {
+          "type": "STRING",
+          "value": "DLY3"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL3"
+        },
+        {
+          "type": "STRING",
+          "value": "DO3"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK3"
+        },
+        {
+          "type": "STRING",
+          "value": "DLY4"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL4"
+        },
+        {
+          "type": "STRING",
+          "value": "DO4"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK4"
+        },
+        {
+          "type": "STRING",
+          "value": "DLY5"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL5"
+        },
+        {
+          "type": "STRING",
+          "value": "DO5"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK5"
+        },
+        {
+          "type": "STRING",
+          "value": "DLY6"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL6"
+        },
+        {
+          "type": "STRING",
+          "value": "DO6"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK6"
+        },
+        {
+          "type": "STRING",
+          "value": "DLY7"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL7"
+        },
+        {
+          "type": "STRING",
+          "value": "DO7"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK7"
+        },
+        {
+          "type": "STRING",
+          "value": "DLY8"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL8"
+        },
+        {
+          "type": "STRING",
+          "value": "DO8"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK8"
+        },
+        {
+          "type": "STRING",
+          "value": "DLY9"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL9"
+        },
+        {
+          "type": "STRING",
+          "value": "DO9"
+        },
+        {
+          "type": "STRING",
+          "value": "LNK9"
+        },
+        {
+          "type": "STRING",
+          "value": "DLYA"
+        },
+        {
+          "type": "STRING",
+          "value": "DOLA"
+        },
+        {
+          "type": "STRING",
+          "value": "DOA"
+        },
+        {
+          "type": "STRING",
+          "value": "LNKA"
+        },
+        {
+          "type": "STRING",
+          "value": "DLYB"
+        },
+        {
+          "type": "STRING",
+          "value": "DOLB"
+        },
+        {
+          "type": "STRING",
+          "value": "DOB"
+        },
+        {
+          "type": "STRING",
+          "value": "LNKB"
+        },
+        {
+          "type": "STRING",
+          "value": "DLYC"
+        },
+        {
+          "type": "STRING",
+          "value": "DOLC"
+        },
+        {
+          "type": "STRING",
+          "value": "DOC"
+        },
+        {
+          "type": "STRING",
+          "value": "LNKC"
+        },
+        {
+          "type": "STRING",
+          "value": "DLYD"
+        },
+        {
+          "type": "STRING",
+          "value": "DOLD"
+        },
+        {
+          "type": "STRING",
+          "value": "DOD"
+        },
+        {
+          "type": "STRING",
+          "value": "LNKD"
+        },
+        {
+          "type": "STRING",
+          "value": "DLYE"
+        },
+        {
+          "type": "STRING",
+          "value": "DOLE"
+        },
+        {
+          "type": "STRING",
+          "value": "DOE"
+        },
+        {
+          "type": "STRING",
+          "value": "LNKE"
+        },
+        {
+          "type": "STRING",
+          "value": "DLYF"
+        },
+        {
+          "type": "STRING",
+          "value": "DOLF"
+        },
+        {
+          "type": "STRING",
+          "value": "DOF"
+        },
+        {
+          "type": "STRING",
+          "value": "LNKF"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "INP"
+        },
+        {
+          "type": "STRING",
+          "value": "MPST"
+        },
+        {
+          "type": "STRING",
+          "value": "APST"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "DOL"
+        },
+        {
+          "type": "STRING",
+          "value": "OMSL"
+        },
+        {
+          "type": "STRING",
+          "value": "OUT"
+        },
+        {
+          "type": "STRING",
+          "value": "MPST"
+        },
+        {
+          "type": "STRING",
+          "value": "APST"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOA"
+        },
+        {
+          "type": "STRING",
+          "value": "IVOV"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVL"
+        },
+        {
+          "type": "STRING",
+          "value": "INP"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "MALM"
+        },
+        {
+          "type": "STRING",
+          "value": "NELM"
+        },
+        {
+          "type": "STRING",
+          "value": "INDX"
+        },
+        {
+          "type": "STRING",
+          "value": "BUSY"
+        },
+        {
+          "type": "STRING",
+          "value": "NORD"
+        },
+        {
+          "type": "STRING",
+          "value": "BPTR"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "INAM"
+        },
+        {
+          "type": "STRING",
+          "value": "SNAM"
+        },
+        {
+          "type": "STRING",
+          "value": "SADR"
+        },
+        {
+          "type": "STRING",
+          "value": "INPA"
+        },
+        {
+          "type": "STRING",
+          "value": "INPB"
+        },
+        {
+          "type": "STRING",
+          "value": "INPC"
+        },
+        {
+          "type": "STRING",
+          "value": "INPD"
+        },
+        {
+          "type": "STRING",
+          "value": "INPE"
+        },
+        {
+          "type": "STRING",
+          "value": "INPF"
+        },
+        {
+          "type": "STRING",
+          "value": "INPG"
+        },
+        {
+          "type": "STRING",
+          "value": "INPH"
+        },
+        {
+          "type": "STRING",
+          "value": "INPI"
+        },
+        {
+          "type": "STRING",
+          "value": "INPJ"
+        },
+        {
+          "type": "STRING",
+          "value": "INPK"
+        },
+        {
+          "type": "STRING",
+          "value": "INPL"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "HIHI"
+        },
+        {
+          "type": "STRING",
+          "value": "LOLO"
+        },
+        {
+          "type": "STRING",
+          "value": "HIGH"
+        },
+        {
+          "type": "STRING",
+          "value": "LOW"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "BRSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HHSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LLSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HSV"
+        },
+        {
+          "type": "STRING",
+          "value": "LSV"
+        },
+        {
+          "type": "STRING",
+          "value": "HYST"
+        },
+        {
+          "type": "STRING",
+          "value": "ADEL"
+        },
+        {
+          "type": "STRING",
+          "value": "MDEL"
+        },
+        {
+          "type": "STRING",
+          "value": "A"
+        },
+        {
+          "type": "STRING",
+          "value": "B"
+        },
+        {
+          "type": "STRING",
+          "value": "C"
+        },
+        {
+          "type": "STRING",
+          "value": "D"
+        },
+        {
+          "type": "STRING",
+          "value": "E"
+        },
+        {
+          "type": "STRING",
+          "value": "F"
+        },
+        {
+          "type": "STRING",
+          "value": "G"
+        },
+        {
+          "type": "STRING",
+          "value": "H"
+        },
+        {
+          "type": "STRING",
+          "value": "I"
+        },
+        {
+          "type": "STRING",
+          "value": "J"
+        },
+        {
+          "type": "STRING",
+          "value": "K"
+        },
+        {
+          "type": "STRING",
+          "value": "L"
+        },
+        {
+          "type": "STRING",
+          "value": "LA"
+        },
+        {
+          "type": "STRING",
+          "value": "LB"
+        },
+        {
+          "type": "STRING",
+          "value": "LC"
+        },
+        {
+          "type": "STRING",
+          "value": "LD"
+        },
+        {
+          "type": "STRING",
+          "value": "LE"
+        },
+        {
+          "type": "STRING",
+          "value": "LF"
+        },
+        {
+          "type": "STRING",
+          "value": "LG"
+        },
+        {
+          "type": "STRING",
+          "value": "LH"
+        },
+        {
+          "type": "STRING",
+          "value": "LI"
+        },
+        {
+          "type": "STRING",
+          "value": "LJ"
+        },
+        {
+          "type": "STRING",
+          "value": "LK"
+        },
+        {
+          "type": "STRING",
+          "value": "LL"
+        },
+        {
+          "type": "STRING",
+          "value": "LALM"
+        },
+        {
+          "type": "STRING",
+          "value": "ALST"
+        },
+        {
+          "type": "STRING",
+          "value": "MLST"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "RARM"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "INP"
+        },
+        {
+          "type": "STRING",
+          "value": "EGU"
+        },
+        {
+          "type": "STRING",
+          "value": "HOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "LOPR"
+        },
+        {
+          "type": "STRING",
+          "value": "NELM"
+        },
+        {
+          "type": "STRING",
+          "value": "FTVL"
+        },
+        {
+          "type": "STRING",
+          "value": "BUSY"
+        },
+        {
+          "type": "STRING",
+          "value": "NORD"
+        },
+        {
+          "type": "STRING",
+          "value": "BPTR"
+        },
+        {
+          "type": "STRING",
+          "value": "SIOL"
+        },
+        {
+          "type": "STRING",
+          "value": "SIML"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMM"
+        },
+        {
+          "type": "STRING",
+          "value": "SIMS"
+        },
+        {
+          "type": "STRING",
+          "value": "MPST"
+        },
+        {
+          "type": "STRING",
+          "value": "APST"
+        },
+        {
+          "type": "STRING",
+          "value": "HASH"
+        },
+        {
+          "type": "STRING",
+          "value": "VERS"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "PREC"
+        },
+        {
+          "type": "STRING",
+          "value": "PRE"
+        },
+        {
+          "type": "STRING",
+          "value": "OPRE"
+        },
+        {
+          "type": "STRING",
+          "value": "SM"
+        },
+        {
+          "type": "STRING",
+          "value": "OSM"
+        },
+        {
+          "type": "STRING",
+          "value": "AR"
+        },
+        {
+          "type": "STRING",
+          "value": "OAR"
+        },
+        {
+          "type": "STRING",
+          "value": "AFT"
+        },
+        {
+          "type": "STRING",
+          "value": "OAFT"
+        },
+        {
+          "type": "STRING",
+          "value": "PPV"
+        },
+        {
+          "type": "STRING",
+          "value": "RPV"
+        },
+        {
+          "type": "STRING",
+          "value": "DPV"
+        },
+        {
+          "type": "STRING",
+          "value": "TPV"
+        },
+        {
+          "type": "STRING",
+          "value": "OPPV"
+        },
+        {
+          "type": "STRING",
+          "value": "ORPV"
+        },
+        {
+          "type": "STRING",
+          "value": "ODPV"
+        },
+        {
+          "type": "STRING",
+          "value": "OTPV"
+        },
+        {
+          "type": "STRING",
+          "value": "SP"
+        },
+        {
+          "type": "STRING",
+          "value": "OSP"
+        },
+        {
+          "type": "STRING",
+          "value": "EP"
+        },
+        {
+          "type": "STRING",
+          "value": "OEP"
+        },
+        {
+          "type": "STRING",
+          "value": "NP"
+        },
+        {
+          "type": "STRING",
+          "value": "ONP"
+        },
+        {
+          "type": "STRING",
+          "value": "SC"
+        },
+        {
+          "type": "STRING",
+          "value": "OSC"
+        },
+        {
+          "type": "STRING",
+          "value": "AQT"
+        },
+        {
+          "type": "STRING",
+          "value": "OAQT"
+        },
+        {
+          "type": "STRING",
+          "value": "MP"
+        },
+        {
+          "type": "STRING",
+          "value": "IMP"
+        },
+        {
+          "type": "STRING",
+          "value": "ACT"
+        },
+        {
+          "type": "STRING",
+          "value": "IACT"
+        },
+        {
+          "type": "STRING",
+          "value": "LOAD"
+        },
+        {
+          "type": "STRING",
+          "value": "OLOAD"
+        },
+        {
+          "type": "STRING",
+          "value": "GO"
+        },
+        {
+          "type": "STRING",
+          "value": "OGO"
+        },
+        {
+          "type": "STRING",
+          "value": "STEP"
+        },
+        {
+          "type": "STRING",
+          "value": "LSTP"
+        },
+        {
+          "type": "STRING",
+          "value": "VERS"
+        },
+        {
+          "type": "STRING",
+          "value": "VAL"
+        },
+        {
+          "type": "STRING",
+          "value": "SMSG"
+        },
+        {
+          "type": "STRING",
+          "value": "CMND"
+        },
+        {
+          "type": "STRING",
+          "value": "ALRT"
+        },
+        {
+          "type": "STRING",
+          "value": "RPVT"
+        },
+        {
+          "type": "STRING",
+          "value": "MPTS"
+        },
+        {
+          "type": "STRING",
+          "value": "EXSC"
+        },
+        {
+          "type": "STRING",
+          "value": "XSC"
+        },
+        {
+          "type": "STRING",
+          "value": "PXSC"
+        },
+        {
+          "type": "STRING",
+          "value": "BUSY"
+        },
+        {
+          "type": "STRING",
+          "value": "KILL"
+        },
+        {
+          "type": "STRING",
+          "value": "WAIT"
+        },
+        {
+          "type": "STRING",
+          "value": "WCNT"
+        },
+        {
+          "type": "STRING",
+          "value": "AWCT"
+        },
+        {
+          "type": "STRING",
+          "value": "WTNG"
+        },
+        {
+          "type": "STRING",
+          "value": "AWAIT"
+        },
+        {
+          "type": "STRING",
+          "value": "AAWAIT"
+        },
+        {
+          "type": "STRING",
+          "value": "DATA"
+        },
+        {
+          "type": "STRING",
+          "value": "REFD"
+        },
+        {
+          "type": "STRING",
+          "value": "NPTS"
+        },
+        {
+          "type": "STRING",
+          "value": "FPTS"
+        },
+        {
+          "type": "STRING",
+          "value": "FFO"
+        },
+        {
+          "type": "STRING",
+          "value": "CPT"
+        },
+        {
+          "type": "STRING",
+          "value": "BCPT"
+        },
+        {
+          "type": "STRING",
+          "value": "DPT"
+        },
+        {
+          "type": "STRING",
+          "value": "PCPT"
+        },
+        {
+          "type": "STRING",
+          "value": "PASM"
+        },
+        {
+          "type": "STRING",
+          "value": "TOLP"
+        },
+        {
+          "type": "STRING",
+          "value": "TLAP"
+        },
+        {
+          "type": "STRING",
+          "value": "ATIME"
+        },
+        {
+          "type": "STRING",
+          "value": "P1PV"
+        },
+        {
+          "type": "STRING",
+          "value": "P2PV"
+        },
+        {
+          "type": "STRING",
+          "value": "P3PV"
+        },
+        {
+          "type": "STRING",
+          "value": "P4PV"
+        },
+        {
+          "type": "STRING",
+          "value": "R1PV"
+        },
+        {
+          "type": "STRING",
+          "value": "R2PV"
+        },
+        {
+          "type": "STRING",
+          "value": "R3PV"
+        },
+        {
+          "type": "STRING",
+          "value": "R4PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D01PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D02PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D03PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D04PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D05PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D06PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D07PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D08PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D09PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D10PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D11PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D12PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D13PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D14PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D15PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D16PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D17PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D18PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D19PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D20PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D21PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D22PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D23PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D24PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D25PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D26PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D27PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D28PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D29PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D30PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D31PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D32PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D33PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D34PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D35PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D36PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D37PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D38PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D39PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D40PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D41PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D42PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D43PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D44PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D45PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D46PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D47PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D48PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D49PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D50PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D51PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D52PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D53PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D54PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D55PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D56PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D57PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D58PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D59PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D60PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D61PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D62PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D63PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D64PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D65PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D66PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D67PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D68PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D69PV"
+        },
+        {
+          "type": "STRING",
+          "value": "D70PV"
+        },
+        {
+          "type": "STRING",
+          "value": "T1PV"
+        },
+        {
+          "type": "STRING",
+          "value": "T2PV"
+        },
+        {
+          "type": "STRING",
+          "value": "T3PV"
+        },
+        {
+          "type": "STRING",
+          "value": "T4PV"
+        },
+        {
+          "type": "STRING",
+          "value": "A1PV"
+        },
+        {
+          "type": "STRING",
+          "value": "BSPV"
+        },
+        {
+          "type": "STRING",
+          "value": "ASPV"
+        },
+        {
+          "type": "STRING",
+          "value": "BSWAIT"
+        },
+        {
+          "type": "STRING",
+          "value": "ASWAIT"
+        },
+        {
+          "type": "STRING",
+          "value": "P1NV"
+        },
+        {
+          "type": "STRING",
+          "value": "P2NV"
+        },
+        {
+          "type": "STRING",
+          "value": "P3NV"
+        },
+        {
+          "type": "STRING",
+          "value": "P4NV"
+        },
+        {
+          "type": "STRING",
+          "value": "R1NV"
+        },
+        {
+          "type": "STRING",
+          "value": "R2NV"
+        },
+        {
+          "type": "STRING",
+          "value": "R3NV"
+        },
+        {
+          "type": "STRING",
+          "value": "R4NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D01NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D02NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D03NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D04NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D05NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D06NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D07NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D08NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D09NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D10NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D11NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D12NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D13NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D14NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D15NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D16NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D17NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D18NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D19NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D20NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D21NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D22NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D23NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D24NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D25NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D26NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D27NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D28NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D29NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D30NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D31NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D32NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D33NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D34NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D35NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D36NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D37NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D38NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D39NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D40NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D41NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D42NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D43NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D44NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D45NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D46NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D47NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D48NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D49NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D50NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D51NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D52NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D53NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D54NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D55NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D56NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D57NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D58NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D59NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D60NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D61NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D62NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D63NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D64NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D65NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D66NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D67NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D68NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D69NV"
+        },
+        {
+          "type": "STRING",
+          "value": "D70NV"
+        },
+        {
+          "type": "STRING",
+          "value": "T1NV"
+        },
+        {
+          "type": "STRING",
+          "value": "T2NV"
+        },
+        {
+          "type": "STRING",
+          "value": "T3NV"
+        },
+        {
+          "type": "STRING",
+          "value": "T4NV"
+        },
+        {
+          "type": "STRING",
+          "value": "A1NV"
+        },
+        {
+          "type": "STRING",
+          "value": "BSNV"
+        },
+        {
+          "type": "STRING",
+          "value": "ASNV"
+        },
+        {
+          "type": "STRING",
+          "value": "P1PP"
+        },
+        {
+          "type": "STRING",
+          "value": "P1CV"
+        },
+        {
+          "type": "STRING",
+          "value": "P1DV"
+        },
+        {
+          "type": "STRING",
+          "value": "P1LV"
+        },
+        {
+          "type": "STRING",
+          "value": "P1SP"
+        },
+        {
+          "type": "STRING",
+          "value": "P1SI"
+        },
+        {
+          "type": "STRING",
+          "value": "P1EP"
+        },
+        {
+          "type": "STRING",
+          "value": "P1CP"
+        },
+        {
+          "type": "STRING",
+          "value": "P1WD"
+        },
+        {
+          "type": "STRING",
+          "value": "R1CV"
+        },
+        {
+          "type": "STRING",
+          "value": "R1LV"
+        },
+        {
+          "type": "STRING",
+          "value": "R1DL"
+        },
+        {
+          "type": "STRING",
+          "value": "P1HR"
+        },
+        {
+          "type": "STRING",
+          "value": "P1LR"
+        },
+        {
+          "type": "STRING",
+          "value": "P1PA"
+        },
+        {
+          "type": "STRING",
+          "value": "P1RA"
+        },
+        {
+          "type": "STRING",
+          "value": "P1CA"
+        },
+        {
+          "type": "STRING",
+          "value": "P1FS"
+        },
+        {
+          "type": "STRING",
+          "value": "P1FI"
+        },
+        {
+          "type": "STRING",
+          "value": "P1FE"
+        },
+        {
+          "type": "STRING",
+          "value": "P1FC"
+        },
+        {
+          "type": "STRING",
+          "value": "P1FW"
+        },
+        {
+          "type": "STRING",
+          "value": "P1SM"
+        },
+        {
+          "type": "STRING",
+          "value": "P1AR"
+        },
+        {
+          "type": "STRING",
+          "value": "P1EU"
+        },
+        {
+          "type": "STRING",
+          "value": "P1PR"
+        },
+        {
+          "type": "STRING",
+          "value": "P2PP"
+        },
+        {
+          "type": "STRING",
+          "value": "P2CV"
+        },
+        {
+          "type": "STRING",
+          "value": "P2DV"
+        },
+        {
+          "type": "STRING",
+          "value": "P2LV"
+        },
+        {
+          "type": "STRING",
+          "value": "P2SP"
+        },
+        {
+          "type": "STRING",
+          "value": "P2SI"
+        },
+        {
+          "type": "STRING",
+          "value": "P2EP"
+        },
+        {
+          "type": "STRING",
+          "value": "P2CP"
+        },
+        {
+          "type": "STRING",
+          "value": "P2WD"
+        },
+        {
+          "type": "STRING",
+          "value": "R2CV"
+        },
+        {
+          "type": "STRING",
+          "value": "R2LV"
+        },
+        {
+          "type": "STRING",
+          "value": "R2DL"
+        },
+        {
+          "type": "STRING",
+          "value": "P2HR"
+        },
+        {
+          "type": "STRING",
+          "value": "P2LR"
+        },
+        {
+          "type": "STRING",
+          "value": "P2PA"
+        },
+        {
+          "type": "STRING",
+          "value": "P2RA"
+        },
+        {
+          "type": "STRING",
+          "value": "P2CA"
+        },
+        {
+          "type": "STRING",
+          "value": "P2FS"
+        },
+        {
+          "type": "STRING",
+          "value": "P2FI"
+        },
+        {
+          "type": "STRING",
+          "value": "P2FE"
+        },
+        {
+          "type": "STRING",
+          "value": "P2FC"
+        },
+        {
+          "type": "STRING",
+          "value": "P2FW"
+        },
+        {
+          "type": "STRING",
+          "value": "P2SM"
+        },
+        {
+          "type": "STRING",
+          "value": "P2AR"
+        },
+        {
+          "type": "STRING",
+          "value": "P2EU"
+        },
+        {
+          "type": "STRING",
+          "value": "P2PR"
+        },
+        {
+          "type": "STRING",
+          "value": "P3PP"
+        },
+        {
+          "type": "STRING",
+          "value": "P3CV"
+        },
+        {
+          "type": "STRING",
+          "value": "P3DV"
+        },
+        {
+          "type": "STRING",
+          "value": "P3LV"
+        },
+        {
+          "type": "STRING",
+          "value": "P3SP"
+        },
+        {
+          "type": "STRING",
+          "value": "P3SI"
+        },
+        {
+          "type": "STRING",
+          "value": "P3EP"
+        },
+        {
+          "type": "STRING",
+          "value": "P3CP"
+        },
+        {
+          "type": "STRING",
+          "value": "P3WD"
+        },
+        {
+          "type": "STRING",
+          "value": "R3CV"
+        },
+        {
+          "type": "STRING",
+          "value": "R3LV"
+        },
+        {
+          "type": "STRING",
+          "value": "R3DL"
+        },
+        {
+          "type": "STRING",
+          "value": "P3HR"
+        },
+        {
+          "type": "STRING",
+          "value": "P3LR"
+        },
+        {
+          "type": "STRING",
+          "value": "P3PA"
+        },
+        {
+          "type": "STRING",
+          "value": "P3RA"
+        },
+        {
+          "type": "STRING",
+          "value": "P3CA"
+        },
+        {
+          "type": "STRING",
+          "value": "P3FS"
+        },
+        {
+          "type": "STRING",
+          "value": "P3FI"
+        },
+        {
+          "type": "STRING",
+          "value": "P3FE"
+        },
+        {
+          "type": "STRING",
+          "value": "P3FC"
+        },
+        {
+          "type": "STRING",
+          "value": "P3FW"
+        },
+        {
+          "type": "STRING",
+          "value": "P3SM"
+        },
+        {
+          "type": "STRING",
+          "value": "P3AR"
+        },
+        {
+          "type": "STRING",
+          "value": "P3EU"
+        },
+        {
+          "type": "STRING",
+          "value": "P3PR"
+        },
+        {
+          "type": "STRING",
+          "value": "P4PP"
+        },
+        {
+          "type": "STRING",
+          "value": "P4CV"
+        },
+        {
+          "type": "STRING",
+          "value": "P4DV"
+        },
+        {
+          "type": "STRING",
+          "value": "P4LV"
+        },
+        {
+          "type": "STRING",
+          "value": "P4SP"
+        },
+        {
+          "type": "STRING",
+          "value": "P4SI"
+        },
+        {
+          "type": "STRING",
+          "value": "P4EP"
+        },
+        {
+          "type": "STRING",
+          "value": "P4CP"
+        },
+        {
+          "type": "STRING",
+          "value": "P4WD"
+        },
+        {
+          "type": "STRING",
+          "value": "R4CV"
+        },
+        {
+          "type": "STRING",
+          "value": "R4LV"
+        },
+        {
+          "type": "STRING",
+          "value": "R4DL"
+        },
+        {
+          "type": "STRING",
+          "value": "P4HR"
+        },
+        {
+          "type": "STRING",
+          "value": "P4LR"
+        },
+        {
+          "type": "STRING",
+          "value": "P4PA"
+        },
+        {
+          "type": "STRING",
+          "value": "P4RA"
+        },
+        {
+          "type": "STRING",
+          "value": "P4CA"
+        },
+        {
+          "type": "STRING",
+          "value": "P4FS"
+        },
+        {
+          "type": "STRING",
+          "value": "P4FI"
+        },
+        {
+          "type": "STRING",
+          "value": "P4FE"
+        },
+        {
+          "type": "STRING",
+          "value": "P4FC"
+        },
+        {
+          "type": "STRING",
+          "value": "P4FW"
+        },
+        {
+          "type": "STRING",
+          "value": "P4SM"
+        },
+        {
+          "type": "STRING",
+          "value": "P4AR"
+        },
+        {
+          "type": "STRING",
+          "value": "P4EU"
+        },
+        {
+          "type": "STRING",
+          "value": "P4PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D01HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D01LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D01DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D01CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D01CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D01LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D01NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D01EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D01PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D02HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D02LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D02DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D02CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D02CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D02LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D02NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D02EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D02PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D03HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D03LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D03DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D03CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D03CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D03LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D03NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D03EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D03PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D04HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D04LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D04DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D04CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D04CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D04LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D04NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D04EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D04PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D05HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D05LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D05DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D05CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D05CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D05LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D05NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D05EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D05PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D06HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D06LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D06DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D06CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D06CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D06LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D06NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D06EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D06PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D07HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D07LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D07DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D07CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D07CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D07LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D07NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D07EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D07PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D08HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D08LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D08DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D08CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D08CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D08LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D08NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D08EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D08PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D09HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D09LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D09DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D09CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D09CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D09LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D09NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D09EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D09PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D10HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D10LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D10DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D10CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D10CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D10LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D10NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D10EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D10PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D11HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D11LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D11DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D11CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D11CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D11LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D11NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D11EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D11PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D12HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D12LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D12DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D12CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D12CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D12LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D12NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D12EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D12PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D13HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D13LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D13DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D13CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D13CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D13LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D13NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D13EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D13PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D14HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D14LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D14DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D14CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D14CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D14LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D14NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D14EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D14PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D15HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D15LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D15DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D15CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D15CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D15LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D15NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D15EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D15PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D16HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D16LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D16DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D16CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D16CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D16LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D16NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D16EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D16PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D17HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D17LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D17DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D17CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D17CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D17LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D17NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D17EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D17PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D18HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D18LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D18DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D18CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D18CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D18LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D18NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D18EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D18PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D19HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D19LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D19DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D19CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D19CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D19LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D19NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D19EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D19PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D20HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D20LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D20DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D20CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D20CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D20LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D20NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D20EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D20PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D21HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D21LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D21DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D21CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D21CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D21LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D21NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D21EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D21PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D22HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D22LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D22DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D22CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D22CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D22LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D22NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D22EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D22PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D23HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D23LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D23DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D23CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D23CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D23LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D23NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D23EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D23PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D24HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D24LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D24DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D24CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D24CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D24LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D24NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D24EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D24PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D25HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D25LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D25DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D25CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D25CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D25LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D25NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D25EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D25PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D26HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D26LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D26DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D26CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D26CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D26LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D26NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D26EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D26PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D27HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D27LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D27DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D27CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D27CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D27LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D27NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D27EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D27PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D28HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D28LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D28DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D28CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D28CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D28LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D28NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D28EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D28PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D29HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D29LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D29DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D29CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D29CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D29LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D29NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D29EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D29PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D30HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D30LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D30DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D30CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D30CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D30LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D30NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D30EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D30PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D31HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D31LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D31DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D31CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D31CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D31LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D31NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D31EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D31PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D32HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D32LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D32DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D32CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D32CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D32LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D32NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D32EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D32PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D33HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D33LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D33DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D33CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D33CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D33LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D33NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D33EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D33PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D34HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D34LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D34DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D34CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D34CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D34LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D34NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D34EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D34PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D35HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D35LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D35DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D35CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D35CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D35LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D35NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D35EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D35PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D36HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D36LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D36DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D36CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D36CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D36LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D36NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D36EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D36PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D37HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D37LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D37DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D37CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D37CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D37LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D37NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D37EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D37PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D38HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D38LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D38DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D38CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D38CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D38LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D38NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D38EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D38PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D39HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D39LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D39DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D39CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D39CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D39LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D39NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D39EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D39PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D40HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D40LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D40DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D40CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D40CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D40LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D40NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D40EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D40PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D41HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D41LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D41DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D41CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D41CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D41LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D41NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D41EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D41PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D42HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D42LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D42DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D42CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D42CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D42LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D42NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D42EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D42PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D43HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D43LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D43DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D43CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D43CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D43LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D43NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D43EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D43PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D44HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D44LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D44DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D44CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D44CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D44LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D44NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D44EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D44PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D45HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D45LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D45DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D45CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D45CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D45LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D45NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D45EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D45PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D46HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D46LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D46DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D46CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D46CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D46LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D46NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D46EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D46PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D47HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D47LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D47DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D47CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D47CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D47LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D47NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D47EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D47PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D48HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D48LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D48DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D48CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D48CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D48LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D48NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D48EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D48PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D49HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D49LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D49DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D49CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D49CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D49LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D49NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D49EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D49PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D50HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D50LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D50DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D50CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D50CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D50LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D50NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D50EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D50PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D51HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D51LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D51DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D51CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D51CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D51LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D51NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D51EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D51PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D52HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D52LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D52DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D52CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D52CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D52LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D52NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D52EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D52PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D53HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D53LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D53DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D53CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D53CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D53LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D53NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D53EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D53PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D54HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D54LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D54DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D54CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D54CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D54LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D54NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D54EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D54PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D55HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D55LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D55DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D55CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D55CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D55LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D55NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D55EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D55PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D56HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D56LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D56DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D56CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D56CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D56LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D56NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D56EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D56PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D57HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D57LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D57DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D57CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D57CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D57LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D57NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D57EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D57PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D58HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D58LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D58DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D58CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D58CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D58LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D58NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D58EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D58PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D59HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D59LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D59DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D59CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D59CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D59LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D59NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D59EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D59PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D60HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D60LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D60DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D60CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D60CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D60LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D60NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D60EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D60PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D61HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D61LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D61DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D61CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D61CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D61LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D61NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D61EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D61PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D62HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D62LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D62DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D62CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D62CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D62LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D62NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D62EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D62PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D63HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D63LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D63DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D63CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D63CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D63LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D63NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D63EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D63PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D64HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D64LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D64DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D64CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D64CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D64LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D64NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D64EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D64PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D65HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D65LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D65DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D65CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D65CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D65LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D65NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D65EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D65PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D66HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D66LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D66DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D66CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D66CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D66LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D66NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D66EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D66PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D67HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D67LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D67DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D67CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D67CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D67LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D67NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D67EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D67PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D68HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D68LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D68DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D68CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D68CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D68LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D68NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D68EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D68PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D69HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D69LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D69DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D69CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D69CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D69LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D69NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D69EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D69PR"
+        },
+        {
+          "type": "STRING",
+          "value": "D70HR"
+        },
+        {
+          "type": "STRING",
+          "value": "D70LR"
+        },
+        {
+          "type": "STRING",
+          "value": "D70DA"
+        },
+        {
+          "type": "STRING",
+          "value": "D70CA"
+        },
+        {
+          "type": "STRING",
+          "value": "D70CV"
+        },
+        {
+          "type": "STRING",
+          "value": "D70LV"
+        },
+        {
+          "type": "STRING",
+          "value": "D70NE"
+        },
+        {
+          "type": "STRING",
+          "value": "D70EU"
+        },
+        {
+          "type": "STRING",
+          "value": "D70PR"
+        },
+        {
+          "type": "STRING",
+          "value": "T1CD"
+        },
+        {
+          "type": "STRING",
+          "value": "T2CD"
+        },
+        {
+          "type": "STRING",
+          "value": "T3CD"
+        },
+        {
+          "type": "STRING",
+          "value": "T4CD"
+        },
+        {
+          "type": "STRING",
+          "value": "A1CD"
+        },
+        {
+          "type": "STRING",
+          "value": "BSCD"
+        },
+        {
+          "type": "STRING",
+          "value": "ASCD"
+        },
+        {
+          "type": "STRING",
+          "value": "PAUS"
+        },
+        {
+          "type": "STRING",
+          "value": "LPAU"
+        },
+        {
+          "type": "STRING",
+          "value": "PDLY"
+        },
+        {
+          "type": "STRING",
+          "value": "DDLY"
+        },
+        {
+          "type": "STRING",
+          "value": "RDLY"
+        },
+        {
+          "type": "STRING",
+          "value": "FAZE"
+        },
+        {
+          "type": "STRING",
+          "value": "ACQM"
+        },
+        {
+          "type": "STRING",
+          "value": "ACQT"
+        },
+        {
+          "type": "STRING",
+          "value": "DSTATE"
+        },
+        {
+          "type": "STRING",
+          "value": "COPYTO"
         }
       ]
     },
