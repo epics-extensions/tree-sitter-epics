@@ -1,7 +1,7 @@
 {
-  "name": "tree-sitter-epics-db",
+  "name": "tree-sitter-epics",
   "version": "0.0.1",
-  "description": "epics-db grammar for tree-sitter",
+  "description": "epics grammars for tree-sitter",
   "main": "bindings/node",
   "keywords": [
     "parsing",
@@ -19,7 +19,9 @@
   "tree-sitter": [
     {
       "scope": "source.epics_db",
-      "file-types": [ "db" ]
+      "file-types": [ "db" ],
+      "path": "./epics-db",
+      "highlights": [ "./epics-db/queries/highlights.scm" ]
     }
   ]
 }
