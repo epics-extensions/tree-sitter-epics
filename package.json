@@ -19,9 +19,15 @@
   "tree-sitter": [
     {
       "scope": "source.epics_db",
-      "file-types": [ "db" ],
+      "file-types": [ "db", "template", "vdb" ],
       "path": "./epics-db",
       "highlights": [ "./epics-db/queries/highlights.scm" ]
+    },
+    {
+      "scope": "source.epics_msi",
+      "file-types": [ "sub", "subs", "substitutions" ],
+      "path": "./epics-msi",
+      "highlights": [ "./epics-msi/queries/highlights.scm" ]
     }
   ]
 }
