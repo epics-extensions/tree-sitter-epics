@@ -3,7 +3,7 @@
 (identifier) @identifier
 
 (string) @string
-(escape_sequence) @string.escape
+(escape_sequence) @string.special
 
 (comment) @comment
 

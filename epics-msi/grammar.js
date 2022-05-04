@@ -31,8 +31,9 @@ module.exports = grammar({
         repeat(choice($.escape_sequence, $.quoted_string_text_fragment)),
         '"'
       ),
-    quoted_string_text_fragment: ($) => token.immediate(/[^"\\]+/),
-    escape_sequence: ($) => token.immediate('\\"'),
+    quoted_string_text_fragment: ($) => prec.right(repeat1(choice(token.immediate(/[^"\\]+/), token.immediate("\\")))),
+    escape_sequence: ($) =>
+      choice(token.immediate('\\"'), token.immediate("\\\\")),
 
     identifier: ($) => /\w+/,
   },
