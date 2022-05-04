@@ -1,0 +1,46 @@
+============
+Simple macro
+============
+
+record(ao, "${P}:name") {
+	field(DESC, "Description for ${P}'s name")
+}
+
+---
+
+(source_file
+	(record
+		type: (builtin_record_type)
+		name: (string
+			(macro_expansion)
+			(string_text_fragment))
+		body: (record_body
+			(field
+				(builtin_field_type)
+				(string
+					;; TODO: Why inside the fragment here?
+					(string_text_fragment
+						(macro_expansion)))))))
+
+==================
+Macro with default
+==================
+
+# TODO: do we need to support macros in macros defaults?
+
+record(ao, "${P=a}:${P="a"}:${P="a\"b"}:name") {
+}
+
+---
+
+(source_file
+	(comment)
+	(record
+		type: (builtin_record_type)
+		name: (string
+			(macro_expansion)
+			;; TODO: Why inside the fragment here?
+			(string_text_fragment
+				(macro_expansion)
+				(macro_expansion)))
+		body: (record_body)))

@@ -1,0 +1,45 @@
+==================
+Simple name string
+==================
+
+record(ao, "name") {
+}
+
+---
+
+(source_file
+	(record
+		type: (builtin_record_type)
+		name: (string (string_text_fragment))
+		body: (record_body)))
+
+================
+Escape sequences
+================
+
+record(ao, "\\\n\"hello\\\$(world)\\") {
+	field(DESC, "hello\\$(world)bla")
+}
+
+---
+
+(source_file
+	(record
+		type: (builtin_record_type)
+		name: (string
+			(escape_sequence)
+			(string_text_fragment)
+			(escape_sequence)
+			(string_text_fragment)
+			(escape_sequence)
+			(escape_sequence)
+			(string_text_fragment)
+			(escape_sequence))
+		body: (record_body
+			(field
+				(builtin_field_type)
+				(string
+					(string_text_fragment)
+					(escape_sequence)
+					(macro_expansion)
+					(string_text_fragment))))))
