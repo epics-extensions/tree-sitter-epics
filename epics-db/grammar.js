@@ -1,7 +1,9 @@
+const common = require("../common/common_grammar.js");
+
 module.exports = grammar({
   name: "epics_db",
 
-  extras: ($) => [/\s/, $.comment],
+  extras: ($) => [/\s/, $.comment, $.macro_expansion],
 
   rules: {
     source_file: ($) => repeat($._declaration),
@@ -66,7 +68,14 @@ module.exports = grammar({
     record_body: ($) => seq("{", repeat($.field), "}"),
 
     field: ($) =>
-      seq("field", "(", choice($.builtin_field_type, alias($._type, $.field_type)), ",", $.string, ")"),
+      seq(
+        "field",
+        "(",
+        choice($.builtin_field_type, alias($._type, $.field_type)),
+        ",",
+        $.string,
+        ")"
+      ),
 
     builtin_field_type: ($) =>
       choice(
@@ -1574,13 +1583,6 @@ module.exports = grammar({
         "D60NV",
         "D61NV",
         "D62NV",
-        "D63NV",
-        "D64NV",
-        "D65NV",
-        "D66NV",
-        "D67NV",
-        "D68NV",
-        "D69NV",
         "D70NV",
         "T1NV",
         "T2NV",
@@ -2346,21 +2348,8 @@ module.exports = grammar({
 
     string: ($) =>
       choice(
-        seq(
-          "'",
-          repeat(choice($.string_expansion, $.string_text_fragment)),
-          "'"
-        ),
-        seq(
-          '"',
-          repeat(
-            choice(
-              $.string_expansion,
-              alias($.string_text_fragment2, $.string_text_fragment)
-            )
-          ),
-          '"'
-        ),
+        seq("'", $.string_text_fragment, "'"),
+        seq('"', alias($.string_text_fragment2, $.string_text_fragment), '"'),
         alias($.identifier, $.string_text_fragment)
       ),
 
@@ -2370,18 +2359,8 @@ module.exports = grammar({
     string_text_fragment2: ($) =>
       choice("\\$", token.immediate(prec(1, /[^"$]+/))),
 
-    string_expansion: ($) =>
-      choice(
-        seq("${", $._string_expansion_inner, "}"),
-        seq("$(", $._string_expansion_inner, ")")
-      ),
-
-    _string_expansion_inner: ($) =>
-      seq(
-        field("variable", $.identifier),
-        optional(seq("=", field("default", $.string)))
-      ),
-
     identifier: ($) => /\w+/,
+
+    ...common,
   },
 });

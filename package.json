@@ -18,16 +18,23 @@
   },
   "tree-sitter": [
     {
-      "scope": "source.epics_db",
+      "scope": "source.epics.db",
       "file-types": [ "db", "template", "vdb" ],
       "path": "./epics-db",
-      "highlights": [ "./epics-db/queries/highlights.scm" ]
+      "highlights": [ "./epics-db/queries/highlights.scm" ],
+      "injections": [ "./epics-db/queries/injections.scm" ]
     },
     {
-      "scope": "source.epics_msi",
+      "scope": "source.epics.msi_substitution",
       "file-types": [ "sub", "subs", "substitutions" ],
-      "path": "./epics-msi",
-      "highlights": [ "./epics-msi/queries/highlights.scm" ]
+      "path": "./epics-msi-substitution",
+      "highlights": [ "./epics-msi-substitution/queries/highlights.scm" ],
+      "injections": [ "./epics-db/queries/injections.scm" ]
+    },
+    {
+      "scope": "source.epics.msi_template",
+      "path": "./epics-msi-template",
+      "highlights": [ "./epics-msi-template/queries/highlights.scm" ]
     }
   ]
 }

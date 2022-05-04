@@ -43,7 +43,7 @@
     "fields": {}
   },
   {
-    "type": "identifier",
+    "type": "macro_expansion",
     "named": true,
     "fields": {}
   },
@@ -127,44 +127,14 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
-        {
-          "type": "string_expansion",
-          "named": true
-        },
         {
           "type": "string_text_fragment",
           "named": true
         }
       ]
-    }
-  },
-  {
-    "type": "string_expansion",
-    "named": true,
-    "fields": {
-      "default": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "string",
-            "named": true
-          }
-        ]
-      },
-      "variable": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
     }
   },
   {
@@ -202,10 +172,6 @@
   },
   {
     "type": ",",
-    "named": false
-  },
-  {
-    "type": "=",
     "named": false
   },
   {
@@ -3245,10 +3211,6 @@
     "named": false
   },
   {
-    "type": "D63NV",
-    "named": false
-  },
-  {
     "type": "D63PR",
     "named": false
   },
@@ -3286,10 +3248,6 @@
   },
   {
     "type": "D64NE",
-    "named": false
-  },
-  {
-    "type": "D64NV",
     "named": false
   },
   {
@@ -3333,10 +3291,6 @@
     "named": false
   },
   {
-    "type": "D65NV",
-    "named": false
-  },
-  {
     "type": "D65PR",
     "named": false
   },
@@ -3374,10 +3328,6 @@
   },
   {
     "type": "D66NE",
-    "named": false
-  },
-  {
-    "type": "D66NV",
     "named": false
   },
   {
@@ -3421,10 +3371,6 @@
     "named": false
   },
   {
-    "type": "D67NV",
-    "named": false
-  },
-  {
     "type": "D67PR",
     "named": false
   },
@@ -3465,10 +3411,6 @@
     "named": false
   },
   {
-    "type": "D68NV",
-    "named": false
-  },
-  {
     "type": "D68PR",
     "named": false
   },
@@ -3506,10 +3448,6 @@
   },
   {
     "type": "D69NE",
-    "named": false
-  },
-  {
-    "type": "D69NV",
     "named": false
   },
   {

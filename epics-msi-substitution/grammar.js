@@ -1,7 +1,10 @@
-module.exports = grammar({
-  name: "epics_msi",
+const common = require("../common/common_grammar.js");
+const common_msi = require("../common/common_msi.js");
 
-  extras: ($) => [/\s/, $.comment],
+module.exports = grammar({
+  name: "epics_msi_substitution",
+
+  extras: ($) => [/\s/, $.comment, $.macro_expansion],
 
   rules: {
     source_file: ($) =>
@@ -24,17 +27,9 @@ module.exports = grammar({
     substitutions: ($) =>
       seq("{", choice(repeat($.regular), repeat($.pattern)), "}"),
 
-    string: ($) => choice(/\w+/, $.quoted_string),
-    quoted_string: ($) =>
-      seq(
-        '"',
-        repeat(choice($.escape_sequence, $.quoted_string_text_fragment)),
-        '"'
-      ),
-    quoted_string_text_fragment: ($) => prec.right(repeat1(choice(token.immediate(/[^"\\]+/), token.immediate("\\")))),
-    escape_sequence: ($) =>
-      choice(token.immediate('\\"'), token.immediate("\\\\")),
-
     identifier: ($) => /\w+/,
+
+    ...common,
+    ...common_msi,
   },
 });

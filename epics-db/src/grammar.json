@@ -6314,34 +6314,6 @@
         },
         {
           "type": "STRING",
-          "value": "D63NV"
-        },
-        {
-          "type": "STRING",
-          "value": "D64NV"
-        },
-        {
-          "type": "STRING",
-          "value": "D65NV"
-        },
-        {
-          "type": "STRING",
-          "value": "D66NV"
-        },
-        {
-          "type": "STRING",
-          "value": "D67NV"
-        },
-        {
-          "type": "STRING",
-          "value": "D68NV"
-        },
-        {
-          "type": "STRING",
-          "value": "D69NV"
-        },
-        {
-          "type": "STRING",
           "value": "D70NV"
         },
         {
@@ -9402,20 +9374,8 @@
               "value": "'"
             },
             {
-              "type": "REPEAT",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "string_expansion"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "string_text_fragment"
-                  }
-                ]
-              }
+              "type": "SYMBOL",
+              "name": "string_text_fragment"
             },
             {
               "type": "STRING",
@@ -9431,25 +9391,13 @@
               "value": "\""
             },
             {
-              "type": "REPEAT",
+              "type": "ALIAS",
               "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "string_expansion"
-                  },
-                  {
-                    "type": "ALIAS",
-                    "content": {
-                      "type": "SYMBOL",
-                      "name": "string_text_fragment2"
-                    },
-                    "named": true,
-                    "value": "string_text_fragment"
-                  }
-                ]
-              }
+                "type": "SYMBOL",
+                "name": "string_text_fragment2"
+              },
+              "named": true,
+              "value": "string_text_fragment"
             },
             {
               "type": "STRING",
@@ -9508,7 +9456,11 @@
         }
       ]
     },
-    "string_expansion": {
+    "identifier": {
+      "type": "PATTERN",
+      "value": "\\w+"
+    },
+    "macro_expansion": {
       "type": "CHOICE",
       "members": [
         {
@@ -9520,7 +9472,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_string_expansion_inner"
+              "name": "_macro_expansion_inner"
             },
             {
               "type": "STRING",
@@ -9537,7 +9489,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "_string_expansion_inner"
+              "name": "_macro_expansion_inner"
             },
             {
               "type": "STRING",
@@ -9547,47 +9499,9 @@
         }
       ]
     },
-    "_string_expansion_inner": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "variable",
-          "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "="
-                },
-                {
-                  "type": "FIELD",
-                  "name": "default",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "string"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        }
-      ]
-    },
-    "identifier": {
+    "_macro_expansion_inner": {
       "type": "PATTERN",
-      "value": "\\w+"
+      "value": "[^})]+"
     }
   },
   "extras": [
@@ -9598,6 +9512,10 @@
     {
       "type": "SYMBOL",
       "name": "comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "macro_expansion"
     }
   ],
   "conflicts": [],

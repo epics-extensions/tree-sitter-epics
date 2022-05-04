@@ -1,5 +1,5 @@
 {
-  "name": "epics_msi",
+  "name": "epics_msi_substitution",
   "rules": {
     "source_file": {
       "type": "CHOICE",
@@ -241,6 +241,53 @@
         }
       ]
     },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "\\w+"
+    },
+    "macro_expansion": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "${"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_macro_expansion_inner"
+            },
+            {
+              "type": "STRING",
+              "value": "}"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "$("
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_macro_expansion_inner"
+            },
+            {
+              "type": "STRING",
+              "value": ")"
+            }
+          ]
+        }
+      ]
+    },
+    "_macro_expansion_inner": {
+      "type": "PATTERN",
+      "value": "[^})]+"
+    },
     "string": {
       "type": "CHOICE",
       "members": [
@@ -295,7 +342,7 @@
               "type": "IMMEDIATE_TOKEN",
               "content": {
                 "type": "PATTERN",
-                "value": "[^\"\\\\]+"
+                "value": "[^\"\\\\$]+"
               }
             },
             {
@@ -327,10 +374,6 @@
           }
         }
       ]
-    },
-    "identifier": {
-      "type": "PATTERN",
-      "value": "\\w+"
     }
   },
   "extras": [
@@ -341,6 +384,10 @@
     {
       "type": "SYMBOL",
       "name": "comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "macro_expansion"
     }
   ],
   "conflicts": [],
