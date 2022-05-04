@@ -5,6 +5,7 @@
 (field_type) @type
 (builtin_field_type) @type.builtin
 (string) @string
+(escape_sequence) @string.special
 (macro_expansion) @string.special
 
 (comment) @comment

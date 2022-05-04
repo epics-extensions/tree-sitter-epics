@@ -15,6 +15,11 @@
     "fields": {}
   },
   {
+    "type": "escape_sequence",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "field",
     "named": true,
     "fields": {},
@@ -127,9 +132,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
+      "multiple": true,
+      "required": false,
       "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
         {
           "type": "string_text_fragment",
           "named": true
@@ -6459,7 +6468,19 @@
     "named": false
   },
   {
+    "type": "\\",
+    "named": false
+  },
+  {
+    "type": "\\\"",
+    "named": false
+  },
+  {
     "type": "\\$",
+    "named": false
+  },
+  {
+    "type": "\\\\",
     "named": false
   },
   {

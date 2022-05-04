@@ -9374,8 +9374,20 @@
               "value": "'"
             },
             {
-              "type": "SYMBOL",
-              "name": "string_text_fragment"
+              "type": "REPEAT",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "escape_sequence"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "string_text_fragment"
+                  }
+                ]
+              }
             },
             {
               "type": "STRING",
@@ -9391,13 +9403,25 @@
               "value": "\""
             },
             {
-              "type": "ALIAS",
+              "type": "REPEAT",
               "content": {
-                "type": "SYMBOL",
-                "name": "string_text_fragment2"
-              },
-              "named": true,
-              "value": "string_text_fragment"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "escape_sequence"
+                  },
+                  {
+                    "type": "ALIAS",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "string_text_fragment2"
+                    },
+                    "named": true,
+                    "value": "string_text_fragment"
+                  }
+                ]
+              }
             },
             {
               "type": "STRING",
@@ -9417,41 +9441,87 @@
       ]
     },
     "string_text_fragment": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "\\$"
-        },
-        {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "PATTERN",
-              "value": "[^'$]+"
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "PREC",
+                "value": 1,
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[^'\\\\$]+"
+                }
+              }
+            },
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "\\"
+              }
             }
-          }
+          ]
         }
-      ]
+      }
     },
     "string_text_fragment2": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "PREC",
+                "value": 1,
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[^\"\\\\$]+"
+                }
+              }
+            },
+            {
+              "type": "IMMEDIATE_TOKEN",
+              "content": {
+                "type": "STRING",
+                "value": "\\"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "escape_sequence": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "\\$"
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "\\\""
+          }
         },
         {
           "type": "IMMEDIATE_TOKEN",
           "content": {
-            "type": "PREC",
-            "value": 1,
-            "content": {
-              "type": "PATTERN",
-              "value": "[^\"$]+"
-            }
+            "type": "STRING",
+            "value": "\\\\"
+          }
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "\\$"
           }
         }
       ]

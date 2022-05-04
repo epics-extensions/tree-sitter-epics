@@ -2348,16 +2348,33 @@ module.exports = grammar({
 
     string: ($) =>
       choice(
-        seq("'", $.string_text_fragment, "'"),
-        seq('"', alias($.string_text_fragment2, $.string_text_fragment), '"'),
+        seq(
+          "'",
+          repeat(choice($.escape_sequence, $.string_text_fragment)),
+          "'"
+        ),
+        seq(
+          '"',
+          repeat(
+            choice(
+              $.escape_sequence,
+              alias($.string_text_fragment2, $.string_text_fragment)
+            )
+          ),
+          '"'
+        ),
         alias($.identifier, $.string_text_fragment)
       ),
-
     string_text_fragment: ($) =>
-      choice("\\$", token.immediate(prec(1, /[^'$]+/))),
-
+      prec.right(
+        repeat1(choice(token.immediate(prec(1, /[^'\\$]+/)), token.immediate("\\")))
+      ),
     string_text_fragment2: ($) =>
-      choice("\\$", token.immediate(prec(1, /[^"$]+/))),
+      prec.right(
+        repeat1(choice(token.immediate(prec(1, /[^"\\$]+/)), token.immediate("\\")))
+      ),
+    escape_sequence: ($) =>
+      choice(token.immediate('\\"'), token.immediate("\\\\"), token.immediate("\\$")),
 
     identifier: ($) => /\w+/,
 
