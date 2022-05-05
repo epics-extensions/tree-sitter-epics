@@ -288,6 +288,10 @@
                 "members": [
                   {
                     "type": "SYMBOL",
+                    "name": "variable_expansion"
+                  },
+                  {
+                    "type": "SYMBOL",
                     "name": "escape_sequence"
                   },
                   {
@@ -319,6 +323,10 @@
               "content": {
                 "type": "CHOICE",
                 "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "variable_expansion"
+                  },
                   {
                     "type": "SYMBOL",
                     "name": "escape_sequence"
@@ -355,6 +363,30 @@
         "type": "PATTERN",
         "value": "[^'\\\\%]+"
       }
+    },
+    "variable_expansion": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "\\$"
+          }
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "PATTERN",
+              "value": "[a-zA-Z]\\w*"
+            }
+          },
+          "named": true,
+          "value": "variable_name"
+        }
+      ]
     },
     "escape_sequence": {
       "type": "CHOICE",

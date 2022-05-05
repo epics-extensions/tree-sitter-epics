@@ -7,7 +7,7 @@
 [ (function_name) (command_name) (handler_name) ] @function
 [ "{" "}" "[" "]" "(" ")" "<" ">" "/" "#/" ] @punctuation.bracket
 [ "|" ";" ] @punctuation.delimiter
-[ "$" "@" ] @operator
+[ "$" "\\$" "@" ] @operator
 
 (string) @string
 (escape_sequence) @constant.builtin

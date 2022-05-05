@@ -49,6 +49,7 @@ module.exports = grammar({
           '"',
           repeat(
             choice(
+              $.variable_expansion,
               $.escape_sequence,
               $.format_converter,
               $._quoted_string_text_fragment
@@ -61,6 +62,7 @@ module.exports = grammar({
           "'",
           repeat(
             choice(
+              $.variable_expansion,
               $.escape_sequence,
               $.format_converter,
               $._quoted_string_text_fragment2
@@ -72,6 +74,12 @@ module.exports = grammar({
 
     _quoted_string_text_fragment: ($) => token.immediate(/[^"\\%]+/),
     _quoted_string_text_fragment2: ($) => token.immediate(/[^'\\%]+/),
+
+    variable_expansion: ($) =>
+      seq(
+        token.immediate("\\$"),
+        alias(token.immediate(IDENTIFIER), $.variable_name)
+      ),
 
     escape_sequence: ($) =>
       choice(
