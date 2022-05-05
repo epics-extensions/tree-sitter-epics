@@ -41,6 +41,13 @@
       "file-types": [ "cmd" ],
       "path": "./epics-cmd",
       "highlights": [ "./epics-cmd/queries/highlights.scm" ]
+    },
+    {
+      "scope": "source.streamdevice.proto",
+      "file-types": [ "proto" ],
+      "path": "./streamdevice-proto",
+      "highlights": [ "./streamdevice-proto/queries/highlights.scm" ],
+      "injections": [ "./streamdevice-proto/queries/injections.scm" ]
     }
   ]
 }
