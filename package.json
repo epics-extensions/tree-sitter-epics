@@ -35,6 +35,12 @@
       "scope": "source.epics.msi_template",
       "path": "./epics-msi-template",
       "highlights": [ "./epics-msi-template/queries/highlights.scm" ]
+    },
+    {
+      "scope": "source.epics.cmd",
+      "file-types": [ "cmd" ],
+      "path": "./epics-cmd",
+      "highlights": [ "./epics-cmd/queries/highlights.scm" ]
     }
   ]
 }
