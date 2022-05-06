@@ -48,6 +48,13 @@
       "path": "./streamdevice-proto",
       "highlights": [ "./streamdevice-proto/queries/highlights.scm" ],
       "injections": [ "./streamdevice-proto/queries/injections.scm" ]
+    },
+    {
+      "scope": "source.snl",
+      "file-types": [ "st", "stt" ],
+      "path": "./snl",
+      "highlights": [ "./snl/queries/highlights.scm" ],
+      "injections": [ "./snl/queries/injections.scm" ]
     }
   ]
 }
