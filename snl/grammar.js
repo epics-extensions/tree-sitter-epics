@@ -292,13 +292,19 @@ module.exports = grammar({
           "(",
           field("condition", $._comma_expr),
           ")",
-          $.statement,
+          field("consequence", $.statement),
           optional($.else_statement)
         )
       ),
-    else_statement: ($) => seq("else", $.statement),
+    else_statement: ($) => seq("else", field("consequence", $.statement)),
     while_statement: ($) =>
-      seq("while", "(", field("condition", $._comma_expr), ")", $.statement),
+      seq(
+        "while",
+        "(",
+        field("condition", $._comma_expr),
+        ")",
+        field("body", $.statement)
+      ),
     for_statement: ($) =>
       seq(
         "for",
@@ -309,7 +315,7 @@ module.exports = grammar({
         ";",
         field("update", optional($._comma_expr)),
         ")",
-        $.statement
+        field("body", $.statement)
       ),
     state_statement: ($) => seq("state", field("name", $.identifier)),
     return_statement: ($) => seq("return", optional($._comma_expr)),

@@ -1802,8 +1802,12 @@
             "value": ")"
           },
           {
-            "type": "SYMBOL",
-            "name": "statement"
+            "type": "FIELD",
+            "name": "consequence",
+            "content": {
+              "type": "SYMBOL",
+              "name": "statement"
+            }
           },
           {
             "type": "CHOICE",
@@ -1828,8 +1832,12 @@
           "value": "else"
         },
         {
-          "type": "SYMBOL",
-          "name": "statement"
+          "type": "FIELD",
+          "name": "consequence",
+          "content": {
+            "type": "SYMBOL",
+            "name": "statement"
+          }
         }
       ]
     },
@@ -1857,8 +1865,12 @@
           "value": ")"
         },
         {
-          "type": "SYMBOL",
-          "name": "statement"
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "statement"
+          }
         }
       ]
     },
@@ -1934,8 +1946,12 @@
           "value": ")"
         },
         {
-          "type": "SYMBOL",
-          "name": "statement"
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "statement"
+          }
         }
       ]
     },
