@@ -755,7 +755,7 @@
         },
         {
           "type": "STRING",
-          "value": "evflags"
+          "value": "evflag"
         },
         {
           "type": "SEQ",

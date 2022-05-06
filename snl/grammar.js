@@ -143,7 +143,7 @@ module.exports = grammar({
     basetype: ($) =>
       choice(
         $.prim_type,
-        "evflags",
+        "evflag",
         seq(choice("enum", "struct", "union", "typename"), $.identifier),
         "void"
       ),
