@@ -112,7 +112,7 @@ module.exports = grammar({
         $.pointer_declarator,
         $.function_declarator,
         $.array_declarator,
-        // seq("(", $._declarator, ")"),
+        seq("(", $._declarator, ")"),
         seq($.type_qualifier, $._declarator)
       ),
     pointer_declarator: ($) => prec.right(seq("*", $._declarator)),
@@ -251,13 +251,17 @@ module.exports = grammar({
       seq(
         "state",
         field("name", $.identifier),
+        $.state_block,
+      ),
+    state_block: ($) => seq(
         "{",
         repeat($.state_defn),
         optional($.entry),
-        repeat1($.transition),
+        // Technically repeat1, but this hinders development
+        repeat($.transition),
         optional($.exit),
         "}"
-      ),
+    ),
     state_defn: ($) =>
       choice($.assign, $.monitor, $.sync, $.syncq, $.declaration, $.option),
     transition: ($) =>
@@ -335,7 +339,7 @@ module.exports = grammar({
         $.binary_expression,
         $.conditional_expression,
         $.assignment_expression,
-        prec.right($.cast_expression),
+        $.cast_expression,
         prec.right($.sizeof_expression),
         $.true,
         $.false,

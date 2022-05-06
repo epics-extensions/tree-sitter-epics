@@ -1911,6 +1911,14 @@
         "required": true,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
             "type": "array_declarator",
             "named": true
           },
@@ -3149,8 +3157,23 @@
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
+      "types": [
+        {
+          "type": "state_block",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "state_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
       "types": [
         {
           "type": "entry",
