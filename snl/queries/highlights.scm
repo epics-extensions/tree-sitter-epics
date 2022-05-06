@@ -82,6 +82,12 @@
  ] @keyword
 
 [
+ (true)
+ (false)
+ (null)
+] @constant
+
+[
  (number_literal)
  (char_literal)
 ] @number

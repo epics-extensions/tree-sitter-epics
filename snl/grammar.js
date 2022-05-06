@@ -42,7 +42,7 @@ module.exports = grammar({
         $.preproc_function_def,
         $.preproc_call,
         $.line_marker,
-        $.program,
+        $.program
       ),
 
     _c_code: ($) =>
@@ -330,7 +330,10 @@ module.exports = grammar({
         $.conditional_expression,
         $.assignment_expression,
         prec.right($.cast_expression),
-        prec.right($.sizeof_expression)
+        prec.right($.sizeof_expression),
+        $.true,
+        $.false,
+        $.null
       ),
 
     parenthesized_expression: ($) => seq("(", $._comma_expr, ")"),
@@ -443,6 +446,10 @@ module.exports = grammar({
           )
         )
       ),
+
+    true: ($) => token(choice("TRUE", "true")),
+    false: ($) => token(choice("FALSE", "false")),
+    null: ($) => "NULL",
 
     _comma_expr: ($) => choice($._expr, $.comma_expr),
     comma_expr: ($) => seq($._expr, ",", commaSep1($._expr)),
