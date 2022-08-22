@@ -327,6 +327,7 @@ module.exports = grammar({
     _expr: ($) =>
       choice(
         $.number_literal,
+        $.char_literal,
         $.string_literal,
         $.identifier,
         $.parenthesized_expression,

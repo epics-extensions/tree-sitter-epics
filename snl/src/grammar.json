@@ -2028,6 +2028,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "char_literal"
+        },
+        {
+          "type": "SYMBOL",
           "name": "string_literal"
         },
         {
