@@ -99,12 +99,7 @@ module.exports = grammar({
         field("body", $.field_declaration_list),
         ";"
       ),
-    field_declaration_list: ($) =>
-      seq(
-        "{",
-        repeat($.member_decl),
-        "}"
-      ),
+    field_declaration_list: ($) => seq("{", repeat($.member_decl), "}"),
     member_decl: ($) => seq($.basetype, $.declarator, ";"),
 
     declaration: ($) => seq($.basetype, commaSep($.init_declarator), ";"),
@@ -198,19 +193,34 @@ module.exports = grammar({
             $.identifier,
             optional($.subscript),
             optional("to"),
-            $.string_literal
+            alias($._expanded_string_literal, $.string_literal)
           ),
           seq(
             $.identifier,
             optional("to"),
             "{",
-            commaSep($.string_literal),
+            commaSep(alias($._expanded_string_literal, $.string_literal)),
             "}"
           ),
           $.identifier
         ),
         ";"
       ),
+
+    _expanded_string_literal: ($) =>
+      seq(
+        '"',
+        repeat(
+          choice(
+            $.parameter_expansion,
+            token.immediate(prec(1, /[^\{\\"\n]+/)),
+            $.escape_sequence
+          )
+        ),
+        '"'
+      ),
+    parameter_expansion: ($) => seq(token.immediate("{"), $.identifier, "}"),
+
     subscript: ($) => seq("[", $.number_literal, "]"),
 
     monitor: ($) => seq("monitor", $.identifier, optional($.subscript), ";"),
