@@ -96,10 +96,14 @@ module.exports = grammar({
       seq(
         "struct",
         field("name", $.identifier),
+        field("body", $.field_declaration_list),
+        ";"
+      ),
+    field_declaration_list: ($) =>
+      seq(
         "{",
         repeat($.member_decl),
-        "}",
-        ";"
+        "}"
       ),
     member_decl: ($) => seq($.basetype, $.declarator, ";"),
 
@@ -247,13 +251,9 @@ module.exports = grammar({
         "}"
       ),
     ss_defn: ($) => choice($.assign, $.monitor, $.sync, $.syncq, $.declaration),
-    state: ($) =>
+    state: ($) => seq("state", field("name", $.identifier), $.state_block),
+    state_block: ($) =>
       seq(
-        "state",
-        field("name", $.identifier),
-        $.state_block,
-      ),
-    state_block: ($) => seq(
         "{",
         repeat($.state_defn),
         optional($.entry),
@@ -261,7 +261,7 @@ module.exports = grammar({
         repeat($.transition),
         optional($.exit),
         "}"
-    ),
+      ),
     state_defn: ($) =>
       choice($.assign, $.monitor, $.sync, $.syncq, $.declaration, $.option),
     transition: ($) =>
