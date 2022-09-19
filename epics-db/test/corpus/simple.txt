@@ -12,7 +12,7 @@ record(ao, "name") {
 (source_file
 	(comment)
 	(record
-		type: (builtin_record_type)
+		type: (record_type)
 		name: (string (string_text_fragment))
 		body: (record_body)))
 
@@ -28,11 +28,11 @@ record(ao, "name") {
 
 (source_file
 	(record
-		type: (builtin_record_type)
+		type: (record_type)
 		name: (string (string_text_fragment))
 		body: (record_body
 			(field
-				(builtin_field_type)
+				(field_type)
 				(string (string_text_fragment))))))
 
 =============
@@ -48,12 +48,12 @@ record(ao, "name") {
 
 (source_file
 	(record
-		type: (builtin_record_type)
+		type: (record_type)
 		name: (string (string_text_fragment))
 		body: (record_body
 			(field
-				(builtin_field_type)
+				(field_type)
 				(string (string_text_fragment)))
 			(field
-				(builtin_field_type)
+				(field_type)
 				(string (string_text_fragment))))))
