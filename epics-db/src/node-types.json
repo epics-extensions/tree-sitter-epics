@@ -1,26 +1,340 @@
 [
   {
+    "type": "alias",
+    "named": true,
+    "fields": {
+      "alias_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "record_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "alias_statement",
+    "named": true,
+    "fields": {
+      "alias_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "record_name",
+            "named": true
+          }
+        ]
+      },
+      "record_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "record_name",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "breakpoint_item",
+    "named": true,
+    "fields": {
+      "eng_value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "double",
+            "named": true
+          }
+        ]
+      },
+      "raw_value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "double",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "breakpoint_table",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "breakpoint_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ccode",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "cdef",
+    "named": true,
+    "fields": {
+      "code": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "ccode",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "comment",
     "named": true,
     "fields": {}
   },
   {
-    "type": "escape_sequence",
+    "type": "device_support_declaration",
     "named": true,
-    "fields": {}
+    "fields": {
+      "choice": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "dset_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "link_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "record_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "record_type",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "driver_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "field",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "field_name",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "json_value",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "field_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "field_name",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "field_descriptor",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "field_descriptor",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "field_type",
+          "type": "field_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "field_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
           "named": true
         },
+        {
+          "type": "string_text_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "field_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "string_text_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "include_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
         {
           "type": "string",
           "named": true
@@ -29,7 +343,37 @@
     }
   },
   {
-    "type": "field_type",
+    "type": "info",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "json_value",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "json_value",
     "named": true,
     "fields": {}
   },
@@ -39,25 +383,86 @@
     "fields": {}
   },
   {
-    "type": "record",
+    "type": "menu_choice",
     "named": true,
     "fields": {
-      "body": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "record_body",
-            "named": true
-          }
-        ]
-      },
       "name": {
         "multiple": false,
         "required": true,
         "types": [
           {
             "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "string": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "menu_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "include_statement",
+          "named": true
+        },
+        {
+          "type": "menu_choice",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "path_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "record_instance",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "record_name",
             "named": true
           }
         ]
@@ -72,10 +477,32 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "alias",
+          "named": true
+        },
+        {
+          "type": "field",
+          "named": true
+        },
+        {
+          "type": "include_statement",
+          "named": true
+        },
+        {
+          "type": "info",
+          "named": true
+        }
+      ]
     }
   },
   {
-    "type": "record_body",
+    "type": "record_name",
     "named": true,
     "fields": {},
     "children": {
@@ -83,7 +510,11 @@
       "required": false,
       "types": [
         {
-          "type": "field",
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "string_text_fragment",
           "named": true
         }
       ]
@@ -92,7 +523,71 @@
   {
     "type": "record_type",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "string_text_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "record_type_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "record_type",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "cdef",
+          "named": true
+        },
+        {
+          "type": "field_definition",
+          "named": true
+        },
+        {
+          "type": "include_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "registrar_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "source_file",
@@ -103,7 +598,51 @@
       "required": false,
       "types": [
         {
-          "type": "record",
+          "type": "alias_statement",
+          "named": true
+        },
+        {
+          "type": "breakpoint_table",
+          "named": true
+        },
+        {
+          "type": "device_support_declaration",
+          "named": true
+        },
+        {
+          "type": "driver_declaration",
+          "named": true
+        },
+        {
+          "type": "function_declaration",
+          "named": true
+        },
+        {
+          "type": "include_statement",
+          "named": true
+        },
+        {
+          "type": "menu_definition",
+          "named": true
+        },
+        {
+          "type": "path_definition",
+          "named": true
+        },
+        {
+          "type": "record_instance",
+          "named": true
+        },
+        {
+          "type": "record_type_definition",
+          "named": true
+        },
+        {
+          "type": "registrar_declaration",
+          "named": true
+        },
+        {
+          "type": "variable_declaration",
           "named": true
         }
       ]
@@ -134,6 +673,32 @@
     "fields": {}
   },
   {
+    "type": "variable_declaration",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "\"",
     "named": false
   },
@@ -150,7 +715,7 @@
     "named": false
   },
   {
-    "type": "'",
+    "type": "%",
     "named": false
   },
   {
@@ -166,19 +731,51 @@
     "named": false
   },
   {
+    "type": "[",
+    "named": false
+  },
+  {
     "type": "\\",
     "named": false
   },
   {
-    "type": "\\\"",
+    "type": "]",
     "named": false
   },
   {
-    "type": "\\$",
+    "type": "addpath",
     "named": false
   },
   {
-    "type": "\\\\",
+    "type": "alias",
+    "named": false
+  },
+  {
+    "type": "breaktable",
+    "named": false
+  },
+  {
+    "type": "choice",
+    "named": false
+  },
+  {
+    "type": "device",
+    "named": false
+  },
+  {
+    "type": "double",
+    "named": true
+  },
+  {
+    "type": "driver",
+    "named": false
+  },
+  {
+    "type": "escape_sequence",
+    "named": true
+  },
+  {
+    "type": "false",
     "named": false
   },
   {
@@ -186,7 +783,51 @@
     "named": false
   },
   {
+    "type": "function",
+    "named": false
+  },
+  {
+    "type": "grecord",
+    "named": false
+  },
+  {
+    "type": "include",
+    "named": false
+  },
+  {
+    "type": "info",
+    "named": false
+  },
+  {
+    "type": "menu",
+    "named": false
+  },
+  {
+    "type": "null",
+    "named": false
+  },
+  {
+    "type": "path",
+    "named": false
+  },
+  {
     "type": "record",
+    "named": false
+  },
+  {
+    "type": "recordtype",
+    "named": false
+  },
+  {
+    "type": "registrar",
+    "named": false
+  },
+  {
+    "type": "true",
+    "named": false
+  },
+  {
+    "type": "variable",
     "named": false
   },
   {

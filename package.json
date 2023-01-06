@@ -19,7 +19,7 @@
   "tree-sitter": [
     {
       "scope": "source.epics.db",
-      "file-types": [ "db", "template", "vdb" ],
+      "file-types": [ "dbd", "db", "template", "vdb" ],
       "path": "./epics-db",
       "highlights": [ "./epics-db/queries/highlights.scm" ],
       "injections": [ "./epics-db/queries/injections.scm" ]

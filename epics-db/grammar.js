@@ -1,3 +1,5 @@
+// Specifications:
+// https://docs.epics-controls.org/en/latest/appdevguide/databaseDefinition.html
 const common = require("../common/common_grammar.js");
 
 module.exports = grammar({
@@ -6,72 +8,218 @@ module.exports = grammar({
   extras: ($) => [/\s/, $.comment, $.macro_expansion],
 
   rules: {
-    source_file: ($) => repeat($._declaration),
+    source_file: ($) => repeat($._statements),
 
-    _declaration: ($) => choice($.record),
+    _statements: ($) =>
+      choice(
+        $.path_definition,
+        $.include_statement,
+        $.menu_definition,
+        $.record_type_definition,
+        $.device_support_declaration,
+        $.driver_declaration,
+        $.registrar_declaration,
+        $.variable_declaration,
+        $.function_declaration,
+        $.breakpoint_table,
+        $.record_instance,
+        $.alias_statement
+      ),
 
-    record: ($) =>
-      seq("record", $._record_parameters, field("body", $.record_body)),
+    path_definition: ($) => seq(choice("path", "addpath"), $.string),
 
-    _type: ($) => /\w+/,
+    include_statement: ($) => seq("include", $.string),
 
-    _record_parameters: ($) =>
+    menu_definition: ($) =>
       seq(
+        "menu",
         "(",
-        field(
-          "type",
-          alias($._type, $.record_type)
-        ),
-        ",",
         field("name", $.string),
+        ")",
+        "{",
+        repeat(choice($.menu_choice, $.include_statement)),
+        "}"
+      ),
+
+    menu_choice: ($) =>
+      seq(
+        "choice",
+        "(",
+        field("name", $.string),
+        ",",
+        field("string", $.string),
         ")"
       ),
 
-    record_body: ($) => seq("{", repeat($.field), "}"),
+    record_type_definition: ($) =>
+      seq(
+        "recordtype",
+        "(",
+        field("name", $.record_type),
+        ")",
+        "{",
+        repeat(choice($.field_definition, $.include_statement, $.cdef)),
+        "}"
+      ),
+
+    field_definition: ($) =>
+      seq(
+        "field",
+        "(",
+        field("name", $.field_name),
+        ",",
+        field("type", $.string),
+        ")",
+        "{",
+        repeat($.field_descriptor),
+        "}"
+      ),
+
+    field_descriptor: ($) =>
+      seq($.field_item, "(", field("value", $.string), ")"),
+
+    cdef: ($) => seq("%", field("code", $.ccode)),
+
+    ccode: ($) => /.*/,
+
+    device_support_declaration: ($) =>
+      seq(
+        "device",
+        "(",
+        field("record_type", $.record_type),
+        ",",
+        field("link_type", $.string),
+        ",",
+        field("dset_name", $.string),
+        ",",
+        field("choice", $.string),
+        ")"
+      ),
+
+    driver_declaration: ($) => seq("driver", "(", field("name", $.string), ")"),
+    registrar_declaration: ($) =>
+      seq("registrar", "(", field("name", $.string), ")"),
+    variable_declaration: ($) =>
+      seq(
+        "variable",
+        "(",
+        field("name", $.string),
+        optional(seq(",", field("type", $.string))),
+        ")"
+      ),
+    function_declaration: ($) =>
+      seq("function", "(", field("name", $.string), ")"),
+
+    breakpoint_table: ($) =>
+      seq(
+        "breaktable",
+        "(",
+        field("name", $.string),
+        ")",
+        "{",
+        repeat($.breakpoint_item),
+        "}"
+      ),
+    breakpoint_item: ($) =>
+      seq(
+        field("raw_value", $.double),
+        optional(","),
+        field("eng_value", $.double),
+        optional(",")
+      ),
+
+    // According to the strtod(3) manpage
+    double: ($) =>
+      /[+-]?(([0-9]+(\.[0-9]*)?|\.[0-9]+)(e[+-]?[0-9]+)?|0x[0-9a-f]+(\.[0-9a-f]*)?(p[+-]?[0-9]+)?|inf(inity)?|nan)/i,
+
+    record_instance: ($) =>
+      seq(
+        choice("record", "grecord"),
+        "(",
+        field("type", $.record_type),
+        ",",
+        field("name", $.record_name),
+        ")",
+        "{",
+        repeat(choice($.alias, $.field, $.info, $.include_statement)),
+        "}"
+      ),
+
+    alias: ($) => seq("alias", "(", field("alias_name", $.record_name), ")"),
 
     field: ($) =>
       seq(
         "field",
         "(",
-        alias($._type, $.field_type),
+        field("name", $.field_name),
         ",",
-        $.string,
+        field("value", choice($.string, $.json_value)),
         ")"
       ),
 
+    info: ($) =>
+      seq(
+        "info",
+        "(",
+        field("name", $.string),
+        ",",
+        field("value", choice($.string, $.json_value)),
+        ")"
+      ),
+
+    alias_statement: ($) =>
+      seq(
+        "alias",
+        "(",
+        field("record_name", $.record_name),
+        ",",
+        field("alias_name", $.record_name),
+        ")"
+      ),
+
+    _type: ($) => /\w+/,
+
     comment: ($) => seq("#", /.*/),
 
-    string: ($) =>
+    string: ($) => $._string,
+
+    _string: ($) =>
       choice(
         seq(
-          "'",
-          repeat(choice($.escape_sequence, $.string_text_fragment)),
-          "'"
-        ),
-        seq(
           '"',
-          repeat(
-            choice(
-              $.escape_sequence,
-              alias($.string_text_fragment2, $.string_text_fragment)
-            )
-          ),
+          repeat(choice($.escape_sequence, $.string_text_fragment)),
           '"'
         ),
-        alias($.identifier, $.string_text_fragment)
+        $._unquoted_string
       ),
     string_text_fragment: ($) =>
       prec.right(
-        repeat1(choice(token.immediate(prec(1, /[^'\\$]+/)), token.immediate("\\")))
+        repeat1(
+          choice(token.immediate(prec(1, /[^"\\$]+/)), token.immediate("\\"))
+        )
       ),
-    string_text_fragment2: ($) =>
-      prec.right(
-        repeat1(choice(token.immediate(prec(1, /[^"\\$]+/)), token.immediate("\\")))
-      ),
-    escape_sequence: ($) =>
-      choice(token.immediate('\\"'), token.immediate("\\\\"), token.immediate("\\$")),
 
-    identifier: ($) => /\w+/,
+    // https://docs.epics-controls.org/en/latest/appdevguide/databaseDefinition.html#escape-sequences
+    escape_sequence: ($) =>
+      token.immediate(/\\([abfnrtv\\'"$]|[0-7]{3}|x[0-9a-fA-F]{2})/),
+
+    // Not exactly true, the EPICS version of JSON is slightly different.
+    // e.g. object keys don't have to be quoted.
+    // See:
+    // - `modules/database/src/ioc/dbStatic/dbLex.l`
+    // - `modules/database/src/ioc/dbStatic/dbYacc.y`
+    json_value: ($) =>
+      choice($._json_object, $._json_array, "null", "true", "false"),
+    // Just match balanced delimiters
+    _json_object: ($) => seq("{", repeat(choice(/[^{}]/, $._json_object)), "}"),
+    _json_array: ($) => seq("[", repeat(choice(/[^\[\]]/, $._json_array)), "]"),
+
+    _unquoted_string: ($) => /[a-zA-Z0-9_+:.\[\]<>;-]+/,
+
+    record_type: ($) => $._string,
+    record_name: ($) => $._string,
+    field_item: ($) => $._string,
+    field_name: ($) => $._string,
 
     ...common,
   },
