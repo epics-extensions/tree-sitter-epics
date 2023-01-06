@@ -43,6 +43,17 @@ driver(drvXy210)
 	(driver_declaration name: (string))
 	(driver_declaration name: (string)))
 
+================
+Link declaration
+================
+
+link(debug, lnkDebugIf)
+
+---
+
+(source_file
+	(link_declaration name: (string) jlif_name: (string)))
+
 =====================
 Registrar declaration
 =====================

@@ -18,6 +18,7 @@ module.exports = grammar({
         $.record_type_definition,
         $.device_support_declaration,
         $.driver_declaration,
+        $.link_declaration,
         $.registrar_declaration,
         $.variable_declaration,
         $.function_declaration,
@@ -97,6 +98,18 @@ module.exports = grammar({
       ),
 
     driver_declaration: ($) => seq("driver", "(", field("name", $.string), ")"),
+
+    // Not documented, but present
+    link_declaration: ($) =>
+      seq(
+        "link",
+        "(",
+        field("name", $.string),
+        ",",
+        field("jlif_name", $.string),
+        ")"
+      ),
+
     registrar_declaration: ($) =>
       seq("registrar", "(", field("name", $.string), ")"),
     variable_declaration: ($) =>

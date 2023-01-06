@@ -216,12 +216,14 @@
 [
  "path"
  "addpath"
+ "include"
  "menu"
  "choice"
  "recordtype"
  "field"
  "device"
  "driver"
+ "link"
  "registrar"
  "function"
  "variable"
@@ -231,5 +233,3 @@
  "info"
  "alias"
 ] @keyword
-
-"include" @include

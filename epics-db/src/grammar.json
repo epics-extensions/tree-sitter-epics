@@ -37,6 +37,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "link_declaration"
+        },
+        {
+          "type": "SYMBOL",
           "name": "registrar_declaration"
         },
         {
@@ -408,6 +412,43 @@
         {
           "type": "FIELD",
           "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "link_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "link"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ","
+        },
+        {
+          "type": "FIELD",
+          "name": "jlif_name",
           "content": {
             "type": "SYMBOL",
             "name": "string"

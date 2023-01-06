@@ -378,6 +378,32 @@
     "fields": {}
   },
   {
+    "type": "link_declaration",
+    "named": true,
+    "fields": {
+      "jlif_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "macro_expansion",
     "named": true,
     "fields": {}
@@ -622,6 +648,10 @@
           "named": true
         },
         {
+          "type": "link_declaration",
+          "named": true
+        },
+        {
           "type": "menu_definition",
           "named": true
         },
@@ -796,6 +826,10 @@
   },
   {
     "type": "info",
+    "named": false
+  },
+  {
+    "type": "link",
     "named": false
   },
   {
