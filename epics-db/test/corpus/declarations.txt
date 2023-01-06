@@ -1,0 +1,107 @@
+=================
+Include statement
+=================
+
+include "filename"
+
+---
+
+(source_file
+	(include_statement (string (string_text_fragment))))
+
+==========================
+Device support declaration
+==========================
+
+device(ai,CONSTANT,devAiSoft,"Soft Channel")
+device(ai,VME_IO,devAiXy566Se,"XYCOM-566 SE Scanned")
+
+---
+
+(source_file
+	(device_support_declaration
+		record_type: (record_type)
+		link_type: (string)
+		dset_name: (string)
+		choice: (string (string_text_fragment)))
+	(device_support_declaration
+		record_type: (record_type)
+		link_type: (string)
+		dset_name: (string)
+		choice: (string (string_text_fragment))))
+
+==================
+Driver declaration
+==================
+
+driver(drvVxi)
+driver(drvXy210)
+
+---
+
+(source_file
+	(driver_declaration name: (string))
+	(driver_declaration name: (string)))
+
+=====================
+Registrar declaration
+=====================
+
+registrar(myRegistrar)
+
+---
+
+(source_file
+	(registrar_declaration name: (string)))
+
+====================
+Variable declaration
+====================
+
+variable(myParameter)
+variable(myParameter, double)
+
+---
+
+(source_file
+	(variable_declaration name: (string))
+	(variable_declaration name: (string) type: (string)))
+
+====================
+Function declaration
+====================
+
+function(myFunction)
+
+---
+
+(source_file
+	(function_declaration name: (string)))
+
+
+================
+Breakpoint table
+================
+
+breaktable(typeJdegC) {
+    0.000000 0.000000
+    365.023224 67.000000
+    1000.046448 178.000000
+    3007.255859 524.000000
+    3543.383789 613.000000
+    4042.988281 692.000000
+    4101.488281 701.000000
+}
+
+---
+
+(source_file
+	(breakpoint_table
+		name: (string)
+		(breakpoint_item raw_value: (double) eng_value: (double))
+		(breakpoint_item raw_value: (double) eng_value: (double))
+		(breakpoint_item raw_value: (double) eng_value: (double))
+		(breakpoint_item raw_value: (double) eng_value: (double))
+		(breakpoint_item raw_value: (double) eng_value: (double))
+		(breakpoint_item raw_value: (double) eng_value: (double))
+		(breakpoint_item raw_value: (double) eng_value: (double))))

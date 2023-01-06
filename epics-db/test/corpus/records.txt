@@ -1,0 +1,102 @@
+============
+Empty record
+============
+
+# Hello
+
+record(ao, "name") {
+}
+
+---
+
+(source_file
+	(comment)
+	(record_instance
+		type: (record_type)
+		name: (record_name (string_text_fragment))))
+
+==============
+Simpler record
+==============
+
+record(ao, "name") {
+	field(DESC, "description")
+}
+
+---
+
+(source_file
+	(record_instance
+		type: (record_type)
+		name: (record_name (string_text_fragment))
+		(field
+			name: (field_name)
+			value: (string (string_text_fragment)))))
+
+=============
+Simple record
+=============
+
+record(ao, "name") {
+	field(DESC, "description")
+	field(ZNAM, "zero name")
+}
+
+---
+
+(source_file
+	(record_instance
+		type: (record_type)
+		name: (record_name (string_text_fragment))
+		(field
+			name: (field_name)
+			value: (string (string_text_fragment)))
+		(field
+			name: (field_name)
+			value: (string (string_text_fragment)))))
+
+==============
+Example record
+==============
+
+record(record_type, record_name) {
+    alias(alias_name)
+    field(field_name, "field_value")
+    info(info_name, "info_value")
+}
+
+---
+
+(source_file
+	(record_instance
+		type: (record_type)
+		name: (record_name)
+		(alias alias_name: (record_name))
+		(field
+			name: (field_name)
+			value: (string (string_text_fragment)))
+		(info
+			name: (string)
+			value: (string (string_text_fragment)))))
+
+================
+Record with JSON
+================
+
+record(record_type, record_name) {
+    field(field_name, {const: 3.14159265358979})
+    field(field_name, {const: ["One", "e", "Pi"]})
+    field(field_name, {const:"Inf"})
+    field(field_name, {calc: {expr:"A*B", args:[{db:"record.VAL"}, 1.5], prec:3}})
+}
+
+---
+
+(source_file
+	(record_instance
+		type: (record_type)
+		name: (record_name)
+		(field name: (field_name) value: (json_value))
+		(field name: (field_name) value: (json_value))
+		(field name: (field_name) value: (json_value))
+		(field name: (field_name) value: (json_value))))

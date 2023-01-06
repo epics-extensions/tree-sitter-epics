@@ -1,0 +1,82 @@
+===============
+Path definition
+===============
+
+path "dir:dir...:dir"
+addpath "dir:dir...:dir"
+
+---
+
+(source_file
+	(path_definition (string (string_text_fragment)))
+	(path_definition (string (string_text_fragment))))
+
+===============
+Menu definition
+===============
+
+menu(menuYesNo) {
+    choice(menuYesNoNO, "NO")
+    choice(menuYesNoYES, "YES")
+}
+
+---
+
+(source_file
+	(menu_definition
+		name: (string)
+		(menu_choice
+			name: (string)
+			string: (string (string_text_fragment)))
+		(menu_choice
+			name: (string)
+			string: (string (string_text_fragment)))))
+
+======================
+Record type definition
+======================
+
+recordtype(record_type) {}
+
+recordtype(record_type) {
+    include "file.dbd"
+    field(field_name, field_type) {
+        asl(as_level)
+        initial("init_value")
+        promptgroup("group_name")
+        prompt("prompt_value")
+        special(special_value)
+        pp(pp_value)
+        interest(interest_level)
+        base(base_type)
+        size(size_value)
+        extra("extra_info")
+        menu(name)
+        prop(yesno)
+    }
+    %C_declaration
+}
+
+---
+
+(source_file
+	(record_type_definition name: (record_type))
+	(record_type_definition
+        name: (record_type)
+        (include_statement (string (string_text_fragment)))
+        (field_definition
+            name: (field_name)
+            type: (string)
+            (field_descriptor (field_item) value: (string))
+            (field_descriptor (field_item) value: (string (string_text_fragment)))
+            (field_descriptor (field_item) value: (string (string_text_fragment)))
+            (field_descriptor (field_item) value: (string (string_text_fragment)))
+            (field_descriptor (field_item) value: (string))
+            (field_descriptor (field_item) value: (string))
+            (field_descriptor (field_item) value: (string))
+            (field_descriptor (field_item) value: (string))
+            (field_descriptor (field_item) value: (string))
+            (field_descriptor (field_item) value: (string (string_text_fragment)))
+            (field_descriptor (field_item) value: (string))
+            (field_descriptor (field_item) value: (string)))
+        (cdef code: (ccode))))

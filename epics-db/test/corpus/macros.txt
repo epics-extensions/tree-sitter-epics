@@ -9,18 +9,16 @@ record(ao, "${P}:name") {
 ---
 
 (source_file
-	(record
+	(record_instance
 		type: (record_type)
-		name: (string
+		name: (record_name
 			(macro_expansion)
 			(string_text_fragment))
-		body: (record_body
-			(field
-				(field_type)
-				(string
-					;; TODO: Why inside the fragment here?
-					(string_text_fragment
-						(macro_expansion)))))))
+		(field
+			name: (field_name)
+			value: (string
+				(string_text_fragment
+					(macro_expansion))))))
 
 ==================
 Macro with default
@@ -35,12 +33,10 @@ record(ao, "${P=a}:${P="a"}:${P="a\"b"}:name") {
 
 (source_file
 	(comment)
-	(record
+	(record_instance
 		type: (record_type)
-		name: (string
+		name: (record_name
 			(macro_expansion)
-			;; TODO: Why inside the fragment here?
 			(string_text_fragment
 				(macro_expansion)
-				(macro_expansion)))
-		body: (record_body)))
+				(macro_expansion)))))
