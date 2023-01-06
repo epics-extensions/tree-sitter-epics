@@ -1,5 +1,7 @@
 const common_msi = require("../common/common_msi.js");
 
+// TODO: test with:
+// https://docs.epics-controls.org/en/latest/appdevguide/databaseDefinition.html#macro-substitution
 module.exports = grammar({
   name: "epics_msi_template",
 
