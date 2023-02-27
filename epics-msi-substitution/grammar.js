@@ -1,9 +1,14 @@
+// Specifications:
+// https://epics.anl.gov/EpicsDocumentation/ExtensionsManuals/msi/msi.html
+
 const common = require("../common/common_grammar.js");
 const common_msi = require("../common/common_msi.js");
 
 module.exports = grammar({
   name: "epics_msi_substitution",
 
+  // TODO: Specifications says:
+  // A comment line is any line beginning with the character #, which must be the very first character on the line.
   extras: ($) => [/\s/, $.comment, $.macro_expansion],
 
   rules: {
