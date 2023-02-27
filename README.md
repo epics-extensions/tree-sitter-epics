@@ -12,7 +12,7 @@ Currently, it contains parsers for:
 - StreamDevice's [protocol files]
 - Seq's [SNL] files
 
-[database]: (https://docs.epics-controls.org/en/latest/appdevguide/databaseDefinition.html)
+[database]: <https://docs.epics-controls.org/en/latest/appdevguide/databaseDefinition.html>
 [macro substitution]: <https://docs.epics-controls.org/en/latest/appdevguide/databaseDefinition.html#macro-substitution>
 [protocol files]: <https://paulscherrerinstitute.github.io/StreamDevice/protocol.html>
 [SNL]: <https://www-csr.bessy.de/control/SoftDist/sequencer/Reference.html>
