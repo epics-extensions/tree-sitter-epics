@@ -79,6 +79,29 @@ record(record_type, record_name) {
 			name: (string)
 			value: (string (string_text_fragment)))))
 
+============
+Empty record
+============
+
+record(record_type, record_name1) {}
+
+record(record_type, record_name2)
+
+record(record_type, record_name3) {}
+
+---
+
+(source_file
+	(record_instance
+		type: (record_type)
+		name: (record_name))
+	(record_instance
+		type: (record_type)
+		name: (record_name))
+	(record_instance
+		type: (record_type)
+		name: (record_name)))
+
 ================
 Record with JSON
 ================
