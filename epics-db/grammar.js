@@ -153,9 +153,13 @@ module.exports = grammar({
         ",",
         field("name", $.record_name),
         ")",
-        "{",
-        repeat(choice($.alias, $.field, $.info, $.include_statement)),
-        "}"
+        optional(
+          seq(
+            "{",
+            repeat(choice($.alias, $.field, $.info, $.include_statement)),
+            "}"
+          )
+        )
       ),
 
     alias: ($) => seq("alias", "(", field("alias_name", $.record_name), ")"),
