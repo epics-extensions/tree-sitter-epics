@@ -62,7 +62,7 @@ done
 if [[ "$printHelp" == 1 ]]; then
     echo -e "${CYAN}[INFO]${NC} goal of the script: display errors of a specific type of EPICS files in a user-friendly format."
     echo -e "${CYAN}[INFO]${NC} usage: $0 [-h|--help] [-f|--files \""'$(find <directory> -not -path <exclude> -type f -name <pattern>)'"\" : files to parse] [args...]"
-    echo -e "${CYAN}[INFO]${NC} <directory> : where to find the files, eg: ${HOME}/tops_vnadot/topSaraf/ "
+    echo -e "${CYAN}[INFO]${NC} <directory> : where to find the files, eg: ${HOME}/tops/ "
     echo -e "${CYAN}[INFO]${NC} <exclude> : to exclude directory from find(), eg: \"./builds/\" "
     echo -e "${CYAN}[INFO]${NC} <pattern> : find files with this pattern, eg for EPICS files: "*.cmd" or "*.template" or "*.db" or "*.sub*" or "*.st" or "*.proto" "
     exit
