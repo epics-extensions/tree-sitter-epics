@@ -52,7 +52,7 @@ In order to display errors of a specific type of EPICS files in a user-friendly 
 ```sh
 ./contrib/tree-sitter-epics-nice-print.sh --help
 usage: ./contrib/tree-sitter-epics-nice-print.sh [-h|--help] [-f|--files "$(find <directory> -not -path <exclude> -type f -name <pattern>)" : files to parse] [args...]
-<directory> : where to find the files, eg: /home/vnadot/tops_vnadot/topSaraf/
+<directory> : where to find the files, eg: /home/user/tops/
 <exclude> : to exclude directory from find(), eg: "./builds/"
 <pattern> : find files with this pattern, eg for EPICS files: *.cmd or *.template or *.db or *.sub* or *.st or *.proto
 ```
