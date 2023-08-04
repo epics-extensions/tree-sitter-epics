@@ -1,5 +1,3 @@
-const common_msi = require("../common/common_msi.js");
-
 // TODO: test with:
 // https://docs.epics-controls.org/en/latest/appdevguide/databaseDefinition.html#macro-substitution
 module.exports = grammar({
@@ -17,6 +15,25 @@ module.exports = grammar({
 
     variable: ($) => /\w+/,
 
-    ...common_msi,
+    string: ($) =>
+      choice(repeat1(choice(/\w+/, $.macro_expansion)), $.quoted_string),
+    quoted_string: ($) =>
+      seq(
+        '"',
+        repeat(
+          choice(
+            $.escape_sequence,
+            $.quoted_string_text_fragment,
+            $.macro_expansion
+          )
+        ),
+        '"'
+      ),
+    quoted_string_text_fragment: ($) =>
+      prec.right(
+        repeat1(choice(token.immediate(/[^"\\$]+/), token.immediate("\\")))
+      ),
+    escape_sequence: ($) =>
+      choice(token.immediate('\\"'), token.immediate("\\\\")),
   },
 });

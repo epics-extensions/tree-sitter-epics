@@ -245,61 +245,6 @@
       "type": "PATTERN",
       "value": "\\w+"
     },
-    "macro_expansion": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "${"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_macro_expansion_inner"
-            },
-            {
-              "type": "STRING",
-              "value": "}"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "$("
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_macro_expansion_inner"
-            },
-            {
-              "type": "STRING",
-              "value": ")"
-            }
-          ]
-        }
-      ]
-    },
-    "_macro_expansion_inner": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "[^})]+"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "macro_expansion"
-          }
-        ]
-      }
-    },
     "string": {
       "type": "CHOICE",
       "members": [
@@ -386,6 +331,61 @@
           }
         }
       ]
+    },
+    "macro_expansion": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "${"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_macro_expansion_inner"
+            },
+            {
+              "type": "STRING",
+              "value": "}"
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "$("
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_macro_expansion_inner"
+            },
+            {
+              "type": "STRING",
+              "value": ")"
+            }
+          ]
+        }
+      ]
+    },
+    "_macro_expansion_inner": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^})]+"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "macro_expansion"
+          }
+        ]
+      }
     }
   },
   "extras": [

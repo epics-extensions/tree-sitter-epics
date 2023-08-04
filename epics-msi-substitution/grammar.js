@@ -2,7 +2,6 @@
 // https://epics.anl.gov/EpicsDocumentation/ExtensionsManuals/msi/msi.html
 
 const common = require("../common/common_grammar.js");
-const common_msi = require("../common/common_msi.js");
 
 module.exports = grammar({
   name: "epics_msi_substitution",
@@ -34,7 +33,20 @@ module.exports = grammar({
 
     identifier: ($) => /\w+/,
 
+    string: ($) => choice(/\w+/, $.quoted_string),
+    quoted_string: ($) =>
+      seq(
+        '"',
+        repeat(choice($.escape_sequence, $.quoted_string_text_fragment)),
+        '"'
+      ),
+    quoted_string_text_fragment: ($) =>
+      prec.right(
+        repeat1(choice(token.immediate(/[^"\\$]+/), token.immediate("\\")))
+      ),
+    escape_sequence: ($) =>
+      choice(token.immediate('\\"'), token.immediate("\\\\")),
+
     ...common,
-    ...common_msi,
   },
 });

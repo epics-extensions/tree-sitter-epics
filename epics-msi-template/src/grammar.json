@@ -82,8 +82,20 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "\\w+"
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "\\w+"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "macro_expansion"
+              }
+            ]
+          }
         },
         {
           "type": "SYMBOL",
@@ -110,6 +122,10 @@
               {
                 "type": "SYMBOL",
                 "name": "quoted_string_text_fragment"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "macro_expansion"
               }
             ]
           }
