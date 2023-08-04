@@ -1,0 +1,78 @@
+==
+In
+==
+
+dbpf hello world < path
+
+---
+
+(source_file
+ (command
+  (command_name (word))
+  (argument (word))
+  (argument (word))
+  (redirect (path (word)))))
+
+===
+Out
+===
+
+dbpf hello world > path
+
+---
+
+(source_file
+ (command
+  (command_name (word))
+  (argument (word))
+  (argument (word))
+  (redirect (path (word)))))
+
+======
+Append
+======
+
+dbpf hello world >> path
+
+---
+
+(source_file
+ (command
+  (command_name (word))
+  (argument (word))
+  (argument (word))
+  (redirect (path (word)))))
+
+===================
+Out with descriptor
+===================
+
+dbpf hello world 1> path
+
+---
+
+(source_file
+ (command
+  (command_name (word))
+  (argument (word))
+  (argument (word))
+  (redirect
+   (file_descriptor)
+   (path (word)))))
+
+======================
+Append with descriptor
+======================
+
+dbpf hello world 2>> path
+
+---
+
+(source_file
+ (command
+  (command_name (word))
+  (argument (word))
+  (argument (word))
+  (redirect
+   (file_descriptor)
+   (path (word)))))

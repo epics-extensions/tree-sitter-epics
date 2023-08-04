@@ -1,0 +1,83 @@
+=======
+Command
+=======
+
+dbpf hello world
+
+---
+
+(source_file
+ (command
+  (command_name (word))
+  (argument (word))
+  (argument (word))))
+
+==================
+Command with comma
+==================
+
+dbpf hello, world
+
+---
+
+(source_file
+ (command
+  (command_name (word))
+  (argument (word))
+  (argument (word))))
+
+==============
+Command quoted
+==============
+
+dbpf "hello" "world"
+
+---
+
+(source_file
+ (command
+  (command_name (word))
+  (argument (string))
+  (argument (string))))
+
+=========================
+Command quoted with comma
+=========================
+
+dbpf "hello", "world"
+
+---
+
+(source_file
+ (command
+  (command_name (word))
+  (argument (string))
+  (argument (string))))
+
+====================
+Command with integer
+====================
+
+dbpf hello 1
+
+---
+
+(source_file
+ (command
+  (command_name (word))
+  (argument (word))
+  (argument (word))))
+
+===============================
+Command with integer with comma
+===============================
+
+dbpf hello, 1
+
+---
+
+(source_file
+ (command
+  (command_name (word))
+  (argument (word))
+  (argument (word))))
