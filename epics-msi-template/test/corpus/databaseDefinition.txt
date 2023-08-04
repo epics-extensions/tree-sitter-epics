@@ -1,0 +1,64 @@
+From https://docs.epics-controls.org/en/latest/appdevguide/databaseDefinition.html#macro-substitution
+
+=========
+Example 1
+=========
+
+$(name)
+
+---
+
+(macro_expansion (variable))
+
+=========
+Example 2
+=========
+
+${name}
+
+---
+
+(macro_expansion (variable))
+
+=========
+Example 3
+=========
+
+$(name_$(sel))
+
+---
+
+(macro_expansion
+ (variable (macro_expansion (variable))))
+
+=========
+Example 4
+=========
+
+$(name=default)
+
+---
+
+(macro_expansion
+ (variable)
+ (string))
+
+=========
+Example 5
+=========
+
+$(abcd=$(a)$(b)$(c)$(d),a=A,b=B,c=C,d=D)
+
+---
+
+(macro_expansion
+ (variable)
+ (string
+  (macro_expansion (variable))
+  (macro_expansion (variable))
+  (macro_expansion (variable))
+  (macro_expansion (variable)))
+ (override (variable) (string))
+ (override (variable) (string))
+ (override (variable) (string))
+ (override (variable) (string)))

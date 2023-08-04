@@ -1,0 +1,85 @@
+=====
+Macro
+=====
+
+${A}
+
+---
+
+(macro_expansion (variable))
+
+==================
+Macro with default
+==================
+
+${A=B}
+
+---
+
+(macro_expansion
+ (variable)
+ (string))
+
+======================
+Macro in macro default
+======================
+
+${A=B${C}}
+
+---
+
+(macro_expansion
+ (variable)
+ (string
+  (macro_expansion (variable))))
+
+=========================
+Macro with quoted default
+=========================
+
+${A="B"}
+
+---
+
+(macro_expansion
+ (variable)
+ (string
+  (quoted_string (quoted_string_text_fragment))))
+
+=============================
+Macro in macro quoted default
+=============================
+
+${A="B${C}"}
+
+---
+
+(macro_expansion
+ (variable)
+ (string
+  (quoted_string
+   (quoted_string_text_fragment)
+   (macro_expansion (variable)))))
+
+=======================
+Macro in macro variable
+=======================
+
+${A${B}}
+
+---
+
+(macro_expansion
+ (variable (macro_expansion (variable))))
+
+====================================
+Macro in macro variable with default
+====================================
+
+${A${B}=C}
+
+---
+
+(macro_expansion
+ (variable (macro_expansion (variable)))
+ (string))
