@@ -1,0 +1,31 @@
+==================
+Variable expansion
+==================
+
+a { out "\$var" }
+
+---
+
+(source_file
+ (function
+  (function_name)
+  (command
+   (command_name)
+   (string
+	(variable_expansion (variable_name))))))
+
+===========================
+Protocol argument expansion
+===========================
+
+a { out "\$1" }
+
+---
+
+(source_file
+ (function
+  (function_name)
+  (command
+   (command_name)
+   (string
+	(variable_expansion (variable_name))))))

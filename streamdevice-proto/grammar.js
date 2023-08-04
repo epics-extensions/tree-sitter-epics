@@ -84,7 +84,7 @@ module.exports = grammar({
     variable_expansion: ($) =>
       seq(
         token.immediate("\\$"),
-        alias(token.immediate(IDENTIFIER), $.variable_name)
+        alias(choice(token.immediate(IDENTIFIER), /[1-9]/), $.variable_name)
       ),
 
     escape_sequence: ($) =>

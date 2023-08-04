@@ -437,11 +437,20 @@
         {
           "type": "ALIAS",
           "content": {
-            "type": "IMMEDIATE_TOKEN",
-            "content": {
-              "type": "PATTERN",
-              "value": "[a-zA-Z]\\w*"
-            }
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[a-zA-Z]\\w*"
+                }
+              },
+              {
+                "type": "PATTERN",
+                "value": "[1-9]"
+              }
+            ]
           },
           "named": true,
           "value": "variable_name"
