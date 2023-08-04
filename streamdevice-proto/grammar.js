@@ -7,11 +7,15 @@ module.exports = grammar({
 
   rules: {
     source_file: ($) =>
-      repeat(seq(choice($.comment, $.function, $.assignment, $.handler))),
+      repeat(
+        seq(
+          choice($.comment, $.function, seq($.assignment, ";"), $.handler, ";")
+        )
+      ),
 
     comment: ($) => seq("#", /.*/),
 
-    assignment: ($) => seq($.variable_name, "=", $._value, ";"),
+    assignment: ($) => seq($.variable_name, "=", $._value),
     variable_name: ($) => $._identifier,
     variable: ($) =>
       seq("$", alias(token.immediate(IDENTIFIER), $.variable_name)),
@@ -24,13 +28,14 @@ module.exports = grammar({
       seq(
         $.function_name,
         "{",
-        repeat(choice($.assignment, $.command, $.handler)),
+        repeat(seq(choice($.assignment, $.command, $.handler), ";")),
+        optional(choice($.assignment, $.command, $.handler)),
         "}"
       ),
     function_name: ($) => $._identifier,
 
     command: ($) =>
-      seq($.command_name, optional(seq("(", $._value, ")")), $._value, ";"),
+      seq($.command_name, optional(seq("(", $._value, ")")), $._value),
     command_name: ($) => $._identifier,
 
     handler: ($) =>
@@ -38,7 +43,8 @@ module.exports = grammar({
         "@",
         $.handler_name,
         "{",
-        repeat(choice(seq($.function_name, ";"), $.command)),
+        repeat(seq(choice($.function_name, $.command), ";")),
+        optional(choice($.function_name, $.command)),
         "}"
       ),
     handler_name: ($) => token.immediate(IDENTIFIER),

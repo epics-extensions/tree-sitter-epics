@@ -18,12 +18,25 @@
                 "name": "function"
               },
               {
-                "type": "SYMBOL",
-                "name": "assignment"
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "assignment"
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ";"
+                  }
+                ]
               },
               {
                 "type": "SYMBOL",
                 "name": "handler"
+              },
+              {
+                "type": "STRING",
+                "value": ";"
               }
             ]
           }
@@ -57,10 +70,6 @@
         {
           "type": "SYMBOL",
           "name": "_value"
-        },
-        {
-          "type": "STRING",
-          "value": ";"
         }
       ]
     },
@@ -145,22 +154,56 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
+            "type": "SEQ",
             "members": [
               {
-                "type": "SYMBOL",
-                "name": "assignment"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "assignment"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "command"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "handler"
+                  }
+                ]
               },
               {
-                "type": "SYMBOL",
-                "name": "command"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "handler"
+                "type": "STRING",
+                "value": ";"
               }
             ]
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "assignment"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "command"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "handler"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -207,10 +250,6 @@
         {
           "type": "SYMBOL",
           "name": "_value"
-        },
-        {
-          "type": "STRING",
-          "value": ";"
         }
       ]
     },
@@ -236,27 +275,48 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "CHOICE",
+            "type": "SEQ",
             "members": [
               {
-                "type": "SEQ",
+                "type": "CHOICE",
                 "members": [
                   {
                     "type": "SYMBOL",
                     "name": "function_name"
                   },
                   {
-                    "type": "STRING",
-                    "value": ";"
+                    "type": "SYMBOL",
+                    "name": "command"
                   }
                 ]
               },
               {
-                "type": "SYMBOL",
-                "name": "command"
+                "type": "STRING",
+                "value": ";"
               }
             ]
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "function_name"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "command"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
