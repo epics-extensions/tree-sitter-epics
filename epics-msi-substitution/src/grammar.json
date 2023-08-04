@@ -249,14 +249,18 @@
       "type": "CHOICE",
       "members": [
         {
-          "type": "PATTERN",
-          "value": "\\w+"
+          "type": "SYMBOL",
+          "name": "_bareword"
         },
         {
           "type": "SYMBOL",
           "name": "quoted_string"
         }
       ]
+    },
+    "_bareword": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z0-9_\\-+:./\\\\\\[\\]<>;]+"
     },
     "quoted_string": {
       "type": "SEQ",

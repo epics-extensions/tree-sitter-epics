@@ -36,11 +36,6 @@
     "fields": {}
   },
   {
-    "type": "identifier",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "macro_expansion",
     "named": true,
     "fields": {},
@@ -247,6 +242,10 @@
   {
     "type": "file",
     "named": false
+  },
+  {
+    "type": "identifier",
+    "named": true
   },
   {
     "type": "pattern",

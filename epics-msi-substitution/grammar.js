@@ -1,5 +1,9 @@
 // Specifications:
 // https://epics.anl.gov/EpicsDocumentation/ExtensionsManuals/msi/msi.html
+//
+// Sources:
+// epics-base/modules/database/src/ioc/dbtemplate/dbLoadTemplate_lex.l
+// epics-base/modules/database/src/ioc/dbtemplate/dbLoadTemplate.y
 
 const common = require("../common/common_grammar.js");
 
@@ -33,7 +37,10 @@ module.exports = grammar({
 
     identifier: ($) => /\w+/,
 
-    string: ($) => choice(/\w+/, $.quoted_string),
+    string: ($) => choice($._bareword, $.quoted_string),
+
+	_bareword: ($) => /[a-zA-Z0-9_\-+:./\\\[\]<>;]+/,
+
     quoted_string: ($) =>
       seq(
         '"',
