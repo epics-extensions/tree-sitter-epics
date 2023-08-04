@@ -1,3 +1,5 @@
+// Mostly from 'epics-base/modules/libcom/src/iocsh/iocsh.cpp'
+
 const common = require("../common/common_grammar.js");
 
 module.exports = grammar({
@@ -26,7 +28,18 @@ module.exports = grammar({
     source: ($) => seq("<", $.path),
 
     redirect: ($) =>
-      seq(choice("<", ">", seq($.file_descriptor, ">"), ">>"), $.path),
+      seq(
+        choice(
+          "<",
+          ">",
+          ">>",
+          seq(
+            $.file_descriptor,
+            choice(token.immediate(">"), token.immediate(">>"))
+          )
+        ),
+        $.path
+      ),
 
     file_descriptor: ($) => /[1-9]/,
 
@@ -68,9 +81,16 @@ module.exports = grammar({
     escape_sequence2: ($) =>
       choice(token.immediate("\\'"), token.immediate("\\\\")),
 
-    _argument: ($) => choice($.word, $.string),
+    _argument: ($) =>
+      choice(
+        $.word,
+        $.string,
+        // To prevent the issue of having "1" at the end of a command
+        // being interpreted as the start of a "1> thing" redirect
+        alias($.file_descriptor, $.word)
+      ),
 
-    word: ($) => /([^(),\s#\\$'"]|\\\\|\\"|\\')+/,
+    word: ($) => /([^(),\s#\\$'"<>]|\\\\|\\"|\\')+/,
 
     ...common,
   },

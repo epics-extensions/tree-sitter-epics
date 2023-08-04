@@ -162,6 +162,10 @@
               "value": ">"
             },
             {
+              "type": "STRING",
+              "value": ">>"
+            },
+            {
               "type": "SEQ",
               "members": [
                 {
@@ -169,14 +173,25 @@
                   "name": "file_descriptor"
                 },
                 {
-                  "type": "STRING",
-                  "value": ">"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "IMMEDIATE_TOKEN",
+                      "content": {
+                        "type": "STRING",
+                        "value": ">"
+                      }
+                    },
+                    {
+                      "type": "IMMEDIATE_TOKEN",
+                      "content": {
+                        "type": "STRING",
+                        "value": ">>"
+                      }
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "type": "STRING",
-              "value": ">>"
             }
           ]
         },
@@ -378,12 +393,21 @@
         {
           "type": "SYMBOL",
           "name": "string"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "file_descriptor"
+          },
+          "named": true,
+          "value": "word"
         }
       ]
     },
     "word": {
       "type": "PATTERN",
-      "value": "([^(),\\s#\\\\$'\"]|\\\\\\\\|\\\\\"|\\\\')+"
+      "value": "([^(),\\s#\\\\$'\"<>]|\\\\\\\\|\\\\\"|\\\\')+"
     },
     "macro_expansion": {
       "type": "CHOICE",
