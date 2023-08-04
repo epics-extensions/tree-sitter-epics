@@ -1,12 +1,14 @@
-==
+===
 In
-==
+===
 
+# comment
 dbpf hello world < path
 
 ---
 
 (source_file
+ (comment)
  (command
   (command_name (word))
   (argument (word))
