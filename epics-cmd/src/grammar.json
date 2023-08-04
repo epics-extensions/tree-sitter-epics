@@ -449,8 +449,20 @@
       ]
     },
     "_macro_expansion_inner": {
-      "type": "PATTERN",
-      "value": "[^})]+"
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^})]+"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "macro_expansion"
+          }
+        ]
+      }
     }
   },
   "extras": [

@@ -5,5 +5,5 @@ module.exports = {
       seq("$(", $._macro_expansion_inner, ")")
     ),
 
-  _macro_expansion_inner: ($) => /[^})]+/,
+  _macro_expansion_inner: ($) => repeat1(choice(/[^})]+/, $.macro_expansion)),
 };

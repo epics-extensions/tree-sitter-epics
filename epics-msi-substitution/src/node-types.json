@@ -43,7 +43,17 @@
   {
     "type": "macro_expansion",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "macro_expansion",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "pattern",
