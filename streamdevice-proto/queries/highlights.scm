@@ -6,10 +6,10 @@
 
 [ (function_name) (command_name) (handler_name) ] @function
 [ "{" "}" "[" "]" "(" ")" "<" ">" "/" "#/" ] @punctuation.bracket
-[ "|" ";" ] @punctuation.delimiter
+[ "|" ";" "," ] @punctuation.delimiter
 [ "$" "\\$" "@" ] @operator
 
-(string) @string
+(quoted_literal) @string
 (escape_sequence) @constant.builtin
 
 (format_converter) @function.builtin

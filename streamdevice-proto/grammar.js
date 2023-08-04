@@ -20,8 +20,7 @@ module.exports = grammar({
     variable: ($) =>
       seq("$", alias(token.immediate(IDENTIFIER), $.variable_name)),
 
-    _value: ($) =>
-      choice(repeat1(choice($.variable, $.number, $.string)), $.keyword),
+    _value: ($) => choice($.string, $.keyword),
     keyword: ($) => choice("Error", "Ignore"),
 
     function: ($) =>
@@ -50,32 +49,42 @@ module.exports = grammar({
     handler_name: ($) => token.immediate(IDENTIFIER),
 
     string: ($) =>
-      choice(
-        seq(
-          '"',
-          repeat(
-            choice(
-              $.variable_expansion,
-              $.escape_sequence,
-              $.format_converter,
-              $._quoted_string_text_fragment
-            )
-          ),
-          '"'
+      seq(
+        repeat(
+          seq(choice($.variable, $.number, $.quoted_literal), optional(","))
         ),
+        choice($.variable, $.number, $.quoted_literal)
+      ),
 
-        seq(
-          "'",
-          repeat(
-            choice(
-              $.variable_expansion,
-              $.escape_sequence,
-              $.format_converter,
-              $._quoted_string_text_fragment2
-            )
-          ),
-          "'"
-        )
+    quoted_literal: ($) =>
+      choice($._double_quoted_string, $._single_quoted_string),
+
+    _double_quoted_string: ($) =>
+      seq(
+        '"',
+        repeat(
+          choice(
+            $.variable_expansion,
+            $.escape_sequence,
+            $.format_converter,
+            $._quoted_string_text_fragment
+          )
+        ),
+        '"'
+      ),
+
+    _single_quoted_string: ($) =>
+      seq(
+        "'",
+        repeat(
+          choice(
+            $.variable_expansion,
+            $.escape_sequence,
+            $.format_converter,
+            $._quoted_string_text_fragment2
+          )
+        ),
+        "'"
       ),
 
     _quoted_string_text_fragment: ($) => token.immediate(/[^"\\%]+/),

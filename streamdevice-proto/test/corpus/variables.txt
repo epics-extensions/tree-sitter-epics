@@ -12,7 +12,8 @@ a { out "\$var" }
   (command
    (command_name)
    (string
-	(variable_expansion (variable_name))))))
+	(quoted_literal
+	 (variable_expansion (variable_name)))))))
 
 ===========================
 Protocol argument expansion
@@ -28,4 +29,5 @@ a { out "\$1" }
   (command
    (command_name)
    (string
-	(variable_expansion (variable_name))))))
+	(quoted_literal
+	 (variable_expansion (variable_name)))))))

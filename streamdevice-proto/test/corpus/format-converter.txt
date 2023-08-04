@@ -12,7 +12,8 @@ a { out "%c" }
   (command
    (command_name)
    (string
-	(format_converter)))))
+	(quoted_literal
+	 (format_converter))))))
 
 ====
 Enum
@@ -28,10 +29,11 @@ a { out "%{OFF|ON}" }
   (command
    (command_name)
    (string
-	(format_converter
-	 (format_enum
-	  (enum_specifier (enum_constant))
-	  (enum_specifier (enum_constant))))))))
+	(quoted_literal
+	 (format_converter
+	  (format_enum
+	   (enum_specifier (enum_constant))
+	   (enum_specifier (enum_constant)))))))))
 
 ==============
 Numerical enum
@@ -47,7 +49,8 @@ a { out "%{0|1}" }
   (command
    (command_name)
    (string
-	(format_converter
-	 (format_enum
-	  (enum_specifier (enum_constant))
-	  (enum_specifier (enum_constant))))))))
+	(quoted_literal
+	 (format_converter
+	  (format_enum
+	   (enum_specifier (enum_constant))
+	   (enum_specifier (enum_constant)))))))))

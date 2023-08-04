@@ -12,15 +12,7 @@
           "named": true
         },
         {
-          "type": "number",
-          "named": true
-        },
-        {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "variable",
           "named": true
         },
         {
@@ -57,15 +49,7 @@
           "named": true
         },
         {
-          "type": "number",
-          "named": true
-        },
-        {
           "type": "string",
-          "named": true
-        },
-        {
-          "type": "variable",
           "named": true
         }
       ]
@@ -317,6 +301,29 @@
     "fields": {}
   },
   {
+    "type": "quoted_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "format_converter",
+          "named": true
+        },
+        {
+          "type": "variable_expansion",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "record_name",
     "named": true,
     "fields": {},
@@ -364,18 +371,18 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
-          "type": "escape_sequence",
+          "type": "number",
           "named": true
         },
         {
-          "type": "format_converter",
+          "type": "quoted_literal",
           "named": true
         },
         {
-          "type": "variable_expansion",
+          "type": "variable",
           "named": true
         }
       ]
@@ -469,6 +476,10 @@
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
     "named": false
   },
   {

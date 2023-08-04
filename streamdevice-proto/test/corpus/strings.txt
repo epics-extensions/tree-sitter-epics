@@ -1,0 +1,59 @@
+======
+Simple
+======
+
+A = "Hello world\r\n";
+
+---
+
+(source_file
+ (assignment
+  (variable_name)
+  (string
+   (quoted_literal
+	(escape_sequence)
+	(escape_sequence)))))
+
+==============
+Mixed sequence
+==============
+
+A = 'Hello',0x20,"world",CR,LF;
+
+---
+
+(source_file
+ (assignment
+  (variable_name)
+  (string
+   (quoted_literal)
+   (number (number_literal))
+   (quoted_literal)
+   (number (ascii_name))
+   (number (ascii_name)))))
+
+===============
+Number sequence
+===============
+
+A = 72 101 108 108 111 32 119 111 114 108 100 13 10;
+
+---
+
+(source_file
+ (assignment
+  (variable_name)
+  (string
+   (number (number_literal))
+   (number (number_literal))
+   (number (number_literal))
+   (number (number_literal))
+   (number (number_literal))
+   (number (number_literal))
+   (number (number_literal))
+   (number (number_literal))
+   (number (number_literal))
+   (number (number_literal))
+   (number (number_literal))
+   (number (number_literal))
+   (number (number_literal)))))
