@@ -4,4 +4,4 @@
 (escape_sequence) @string.special
 
 [ "${" "}" "$(" ")" ] @punctuation.bracket
-"=" @punctuation.special
+[ "=" "," ] @punctuation.special

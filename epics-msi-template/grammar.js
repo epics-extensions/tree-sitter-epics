@@ -1,5 +1,3 @@
-// TODO: test with:
-// https://docs.epics-controls.org/en/latest/appdevguide/databaseDefinition.html#macro-substitution
 module.exports = grammar({
   name: "epics_msi_template",
 
@@ -11,9 +9,15 @@ module.exports = grammar({
       ),
 
     _macro_expansion_inner: ($) =>
-      seq($.variable, optional(seq("=", field("default", $.string)))),
+      seq(
+        $.variable,
+        optional(seq("=", field("default", $.string))),
+        field("overrides", repeat(seq(",", $.override)))
+      ),
 
-    variable: ($) => /\w+/,
+    variable: ($) => repeat1(choice(token.immediate(/\w+/), $.macro_expansion)),
+
+    override: ($) => seq($.variable, "=", $.string),
 
     string: ($) =>
       choice(repeat1(choice(/\w+/, $.macro_expansion)), $.quoted_string),

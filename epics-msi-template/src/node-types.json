@@ -17,12 +17,45 @@
             "named": true
           }
         ]
+      },
+      "overrides": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "override",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "override",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "string",
+          "named": true
+        },
         {
           "type": "variable",
           "named": true
@@ -80,7 +113,17 @@
   {
     "type": "variable",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "macro_expansion",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "\"",
@@ -96,6 +139,10 @@
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
     "named": false
   },
   {
