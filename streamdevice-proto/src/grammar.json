@@ -964,8 +964,8 @@
       ]
     },
     "enum_constant": {
-      "type": "SYMBOL",
-      "name": "_identifier"
+      "type": "PATTERN",
+      "value": "\\w+"
     },
     "_char": {
       "type": "CHOICE",

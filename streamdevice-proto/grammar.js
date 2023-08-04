@@ -157,7 +157,7 @@ module.exports = grammar({
       seq(repeat(seq($.enum_specifier, "|")), $.enum_specifier),
     enum_specifier: ($) =>
       seq($.enum_constant, optional(seq("=", choice($.number, "?")))),
-    enum_constant: ($) => $._identifier,
+    enum_constant: ($) => /\w+/,
     _char: ($) => choice(token.immediate(/./), $.escape_sequence),
     checksum_flag: ($) => /[0+-]/,
     checksum: ($) => $._identifier,

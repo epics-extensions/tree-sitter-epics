@@ -1,0 +1,53 @@
+======
+Simple
+======
+
+a { out "%c" }
+
+---
+
+(source_file
+ (function
+  (function_name)
+  (command
+   (command_name)
+   (string
+	(format_converter)))))
+
+====
+Enum
+====
+
+a { out "%{OFF|ON}" }
+
+---
+
+(source_file
+ (function
+  (function_name)
+  (command
+   (command_name)
+   (string
+	(format_converter
+	 (format_enum
+	  (enum_specifier (enum_constant))
+	  (enum_specifier (enum_constant))))))))
+
+==============
+Numerical enum
+==============
+
+a { out "%{0|1}" }
+
+---
+
+(source_file
+ (function
+  (function_name)
+  (command
+   (command_name)
+   (string
+	(format_converter
+	 (format_enum
+	  (enum_specifier (enum_constant))
+	  (enum_specifier (enum_constant))))))))
