@@ -1,0 +1,102 @@
+=====
+Empty
+=====
+
+program a
+entry { }
+ss a { state a {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (entry (block))
+  (state_set
+   (identifier)
+   (state
+    (identifier)
+    (state_block)))))
+
+==========
+Definition
+==========
+
+program a
+entry {
+    int a;
+    int a = 0;
+    int a[1] = 0;
+}
+ss a { state a {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (entry
+   (block
+    (block_defn
+     (declaration
+      (basetype (prim_type))
+      (init_declarator (declarator (identifier)))))
+    (block_defn
+     (declaration
+      (basetype (prim_type))
+      (init_declarator
+       (declarator (identifier))
+       (init_expr (number_literal)))))
+    (block_defn
+     (declaration
+      (basetype (prim_type))
+      (init_declarator
+       (declarator
+        (array_declarator
+         (identifier)
+         (subscript (number_literal))))
+       (init_expr (number_literal)))))))
+  (state_set
+   (identifier)
+   (state
+    (identifier)
+    (state_block)))))
+
+============
+If statement
+============
+
+program a
+entry {
+    if(true) {}
+    if(a == a) {}
+    if(a = 1, true) {}
+}
+ss a { state a {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (entry
+   (block
+    (statement
+     (if_statement
+      (true)
+      (statement (block))))
+    (statement
+     (if_statement
+      (binary_expression (identifier) (identifier))
+      (statement (block))))
+    (statement
+     (if_statement
+      (comma_expr
+       (assignment_expression (identifier) (number_literal))
+       (true))
+      (statement (block))))))
+  (state_set
+   (identifier)
+   (state
+    (identifier)
+    (state_block)))))

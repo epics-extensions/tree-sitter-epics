@@ -1,0 +1,384 @@
+=====
+Empty
+=====
+
+program a
+ss b { state c {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))))
+
+==============
+Program params
+==============
+
+program example ("unit=ajk, stack=11000")
+ss b { state c {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (program_param (string_literal))
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))))
+
+==========================
+Initial global declaration
+==========================
+
+program a
+float a;
+float a[2000];
+ss b { state c {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (initial_defn
+   (declaration
+    (basetype (prim_type))
+    (init_declarator (declarator (identifier)))))
+  (initial_defn
+   (declaration
+    (basetype (prim_type))
+    (init_declarator
+     (declarator 
+      (array_declarator
+       (identifier)
+       (subscript (number_literal)))))))
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))))
+
+=========================
+Initial global assignment
+=========================
+
+program a
+assign a to "a";
+assign a[1] to "a";
+ss b { state c {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (initial_defn
+   (assign (identifier) (string_literal)))
+  (initial_defn
+   (assign
+    (identifier)
+    (subscript (number_literal))
+    (string_literal)))
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))))
+
+======================
+Initial global monitor
+======================
+
+program a
+monitor a;
+monitor a[1];
+ss b { state c {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (initial_defn (monitor (identifier)))
+  (initial_defn
+   (monitor
+    (identifier)
+    (subscript (number_literal))))
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))))
+
+===================
+Initial global sync
+===================
+
+program a
+sync a to a;
+sync a[1] to a;
+ss b { state c {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (initial_defn
+   (sync (identifier) (event_flag (identifier))))
+  (initial_defn
+   (sync
+    (identifier)
+    (subscript (number_literal))
+    (event_flag (identifier))))
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))))
+
+====================
+Initial global syncq
+====================
+
+program a
+syncq a to a 1;
+syncq a[1] to a 1;
+syncq a 1;
+syncq a[1] 1;
+ss b { state c {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (initial_defn
+   (syncq
+	(identifier)
+	(event_flag (identifier))
+	(syncq_size (number_literal))))
+  (initial_defn
+   (syncq
+	(identifier)
+	(subscript (number_literal))
+	(event_flag (identifier))
+	(syncq_size (number_literal))))
+  (initial_defn
+   (syncq
+	(identifier)
+	(syncq_size (number_literal))))
+  (initial_defn
+   (syncq
+	(identifier)
+	(subscript (number_literal))
+	(syncq_size (number_literal))))
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))))
+
+==================================
+Initial global foreign declaration
+==================================
+
+program a
+foreign a;
+foreign a, a, a;
+ss b { state c {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (initial_defn
+   (foreign_declaration (identifier)))
+  (initial_defn
+   (foreign_declaration (identifier) (identifier) (identifier)))
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))))
+
+=====================
+Initial global option
+=====================
+
+program a
+option +a;
+option - a;
+option +aaaa;
+ss b { state c {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (initial_defn
+   (option (option_value) (identifier)))
+  (initial_defn
+   (option (option_value) (identifier)))
+  (initial_defn
+   (option (option_value) (identifier)))
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))))
+
+==================================
+Initial global function definition
+==================================
+
+program a
+int a() {}
+int a(int a) {}
+int a(int a, int a) {}
+ss b { state c {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (initial_defn
+   (funcdef
+    (basetype (prim_type))
+    (declarator
+     (function_declarator (identifier)))
+    (block)))
+  (initial_defn
+   (funcdef
+    (basetype (prim_type))
+    (declarator
+     (function_declarator
+      (identifier)
+      (param_decl
+       (basetype (prim_type))
+       (declarator (identifier)))))
+    (block)))
+  (initial_defn
+   (funcdef
+    (basetype (prim_type))
+    (declarator
+     (function_declarator
+      (identifier)
+      (param_decl
+       (basetype (prim_type))
+       (declarator (identifier)))
+      (param_decl
+       (basetype (prim_type))
+       (declarator (identifier)))))
+    (block)))
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))))
+
+===================================
+Initial global structure definition
+===================================
+
+program a
+struct a {};
+struct a {int a;};
+struct a {int a; int a;};
+ss b { state c {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (initial_defn
+   (structdef
+    (identifier)
+    (field_declaration_list)))
+  (initial_defn
+   (structdef
+    (identifier)
+    (field_declaration_list
+     (member_decl
+      (basetype (prim_type))
+      (declarator (identifier))))))
+  (initial_defn
+   (structdef
+    (identifier)
+    (field_declaration_list
+     (member_decl
+      (basetype (prim_type))
+      (declarator (identifier)))
+     (member_decl
+      (basetype (prim_type))
+      (declarator (identifier))))))
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))))
+
+============
+Global entry
+============
+
+program a
+entry {}
+ss b { state c {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (entry (block))
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))))
+
+==========
+State sets
+==========
+
+program a
+ss b { state c {} }
+ss b { state c {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))))
+
+===========
+Global exit
+===========
+
+program a
+ss b { state c {} }
+exit {}
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))
+  (exit (block))))
+
+================
+Final definition
+================
+
+program a
+ss b { state c {} }
+%{int a;}%
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (state_set
+   (identifier)
+   (state (identifier) (state_block)))
+  (final_defn (c_code))))

@@ -1,0 +1,89 @@
+========
+Literals
+========
+
+program a
+entry {
+    1;
+    'a';
+    "a";
+    a;
+}
+ss a { state a {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (entry
+   (block
+    (statement (number_literal))
+    (statement (char_literal))
+    (statement (string_literal))
+    (statement (identifier))))
+  (state_set
+   (identifier)
+   (state
+    (identifier)
+    (state_block)))))
+
+==================
+Parenthesized expr
+==================
+
+program a
+entry {
+    (1);
+}
+ss a { state a {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (entry
+   (block
+    (statement
+     (parenthesized_expression (number_literal)))))
+  (state_set
+   (identifier)
+   (state
+    (identifier)
+    (state_block)))))
+
+=============
+Function call
+=============
+
+program a
+entry {
+    a();
+    a(1);
+    a(1, 1);
+}
+ss a { state a {} }
+
+---
+
+(source_file
+ (program
+  (identifier)
+  (entry
+   (block
+    (statement
+     (call_expression (identifier)))
+    (statement
+     (call_expression
+      (identifier)
+      (args (number_literal))))
+    (statement
+     (call_expression
+      (identifier)
+      (args (number_literal) (number_literal))))))
+  (state_set
+   (identifier)
+   (state
+    (identifier)
+    (state_block)))))
