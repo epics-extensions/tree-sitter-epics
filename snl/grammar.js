@@ -359,8 +359,8 @@ module.exports = grammar({
 
     parenthesized_expression: ($) => seq("(", $._comma_expr, ")"),
     call_expression: ($) =>
-      prec(PREC.CALL, seq(field("function", $._expr), "(", $.args, ")")),
-    exit_expression: ($) => seq("exit", "(", $.args, ")"),
+      prec(PREC.CALL, seq(field("function", $._expr), "(", optional($.args), ")")),
+    exit_expression: ($) => seq("exit", "(", optional($.args), ")"),
     subscript_expression: ($) => seq($._expr, "[", $._expr, "]"),
     field_expression: ($) =>
       seq($._expr, choice(".", "->"), field("field", $.identifier)),

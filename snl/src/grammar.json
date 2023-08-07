@@ -2240,8 +2240,16 @@
             "value": "("
           },
           {
-            "type": "SYMBOL",
-            "name": "args"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "args"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           },
           {
             "type": "STRING",
@@ -2262,8 +2270,16 @@
           "value": "("
         },
         {
-          "type": "SYMBOL",
-          "name": "args"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "args"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
