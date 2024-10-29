@@ -33,6 +33,20 @@ config by running `tree-sitter init-config` and adding the path under
 
 [Source]: <https://tree-sitter.github.io/tree-sitter/syntax-highlighting#per-user-configuration>
 
+> [!IMPORTANT]
+> The path to add in `"parser-directories"` is the *parent* path
+> of where you cloned this repository.
+>
+> For example,
+> if you have cloned this repository under `/path/to/tree-sitter-epics`,
+> you need to set:
+>
+> ```json
+> {
+>   "parser-directories": ["/path/to"]
+> }
+> ```
+
 You can now use `tree-sitter parse /path/to/file.db` to validate an EPICS
 database file.
 
