@@ -1,5 +1,17 @@
 # tree-sitter-epics
 
+> [!CAUTION]
+> This repo is archived and should't be used anymore.
+>
+> Instead, the project was split into different repositories, one for each grammar:
+>
+> - [tree-sitter-epics-cmd](https://github.com/minijackson/tree-sitter-epics-cmd)
+> - [tree-sitter-epics-db](https://github.com/minijackson/tree-sitter-epics-db)
+> - [tree-sitter-epics-msi-substitution](https://github.com/minijackson/tree-sitter-epics-msi-substitution)
+> - [tree-sitter-epics-msi-template](https://github.com/minijackson/tree-sitter-epics-msi-template)
+> - [tree-sitter-snl](https://github.com/minijackson/tree-sitter-snl)
+> - [tree-sitter-streamdevice-proto](https://github.com/minijackson/tree-sitter-streamdevice-proto)
+
 This repository contains parsers for various EPICS-related domain-specific
 languages.
 
